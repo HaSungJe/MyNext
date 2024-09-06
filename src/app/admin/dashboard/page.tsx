@@ -1,7 +1,7 @@
 export default function DashBoard() {
     return (
         <>
-            /Admin/DashBoard
+            /Admin/DashBoard 내용수정
         </>
     )
 }
