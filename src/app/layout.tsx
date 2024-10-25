@@ -1,12 +1,12 @@
 'use server';
-import '@style/css/import.css';
+// import '@style/css/import.css';
 import '@style/css/xeicon.min.css';
 
 export default async function RootLayout({ children }: { children: React.ReactNode }) {
     return (
         <html lang="ko">
             <head>
-            <link rel="icon" href={`${process.env.NEXT_PUBLIC_LOCAL_SERVER_PREFIX}/favicon.ico`} sizes="any" />
+                <link rel="icon" href={`${process.env.NEXT_PUBLIC_LOCAL_SERVER_PREFIX}/favicon.ico`} sizes="any" />
                 <meta charSet="UTF-8" />
                 <title>{process.env.SERVER_NAME}</title>
             </head>

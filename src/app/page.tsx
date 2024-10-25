@@ -1,12 +1,21 @@
-'use server';
+'use client';
+import { useRouter } from "next/navigation";
 import { checkAuth } from '@/api/auth';
-import { redirect } from 'next/navigation';
+import { useEffect } from "react";
 
-export default async function MainPage() {
-    const auth = await checkAuth();
-    if (auth) {
-        redirect('/dashboard');
-    } else {
-        redirect('/login');
-    }
+export default function MainPage() {
+    const router = useRouter();
+    
+    useEffect(() => {
+        const fetch = async () => {
+            const auth = await checkAuth();
+            if (auth) {
+                router.push('/dashboard');
+            } else {
+                router.push('/login');
+            }
+        }
+
+        fetch();
+    });
 }

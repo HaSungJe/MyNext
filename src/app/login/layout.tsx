@@ -1,11 +1,28 @@
-'use server'
-import { checkAuth } from "@/api/auth";
-import { redirect } from "next/navigation";
+'use client';
+import { checkAuth } from '@/api/auth';
+import Loading from '@/component/loading';
+import { useRouter } from 'next/navigation';
+import { useEffect, useState } from 'react';
 
-export default async function RootLayout({ children }: { children: React.ReactNode }) {
-    const auth = await checkAuth();
-    if (auth) {
-        redirect("/dashboard");
+
+export default function RootLayout({ children }: { children: React.ReactNode }) {
+    const router = useRouter();
+    const [loading, setLoading] = useState(true);
+
+    useEffect(() => {
+        checkAuth().then((response) => {
+            if (response) {
+                router.push('/dashboard');
+            } else {
+                setLoading(false);
+            }
+        });
+    }, []);
+
+    if (loading) {
+        return (
+            <Loading />
+        )
     } else {
         return (
             <body>

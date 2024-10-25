@@ -2,7 +2,6 @@
 import { useEffect, useState } from "react";
 import { setRefreshToken, setAccessToken } from '@/api/auth';
 import { useRouter } from "next/navigation";
-import Image from "next/image";
 import { changeFunction } from "@/util/function";
 import { axiosPost } from "@/util/axios";
 

@@ -1,13 +1,11 @@
 'use client';
-
-import { getUserInfo } from "@/api/auth";
 import { changeFunction } from "@/util/function";
 import { axiosErrorHandle, resetValidationError, validateAction } from "@/util/util";
 import { useEffect, useState } from "react";
 import { AdminPatchMyInfoDTO } from "./dto";
 import { useRouter } from "next/navigation";
 import Loading from "@/component/loading";
-import { axiosPatch } from "@/util/axios";
+import { axiosGet, axiosPatch } from "@/util/axios";
 
 export default function Page() {
     const router = useRouter();
@@ -31,6 +29,8 @@ export default function Page() {
         const check = await validateAction(dto);
         if (check) {
             try {
+                await axiosPatch(router, `${process.env.NEXT_PUBLIC_API_URL}/api/admin/user/myinfo`, dto);
+                
                 alert('수정되었습니다.');
                 router.push(`/dashboard`);
             } catch (error) {
@@ -41,23 +41,29 @@ export default function Page() {
 
     useEffect(() => {
         const fetch = async () => {
-            const userInfo: any = await getUserInfo();
-            setUserName(userInfo ? userInfo['user_name'] : '');
-            setUserEmail(userInfo ? userInfo['user_email'] : '');
-            setUserNickname(userInfo ? userInfo['user_nickname'] : '');
+            try {
+                const response = await axiosGet(router, `${process.env.NEXT_PUBLIC_API_URL}/api/user/info`);
+                const userInfo = response.data.info;
+                setUserName(userInfo ? userInfo['user_name'] : '');
+                setUserEmail(userInfo ? userInfo['user_email'] : '');
+                setUserNickname(userInfo ? userInfo['user_nickname'] : '');
 
-            const mobile_split = userInfo ? userInfo['user_mobile'].split('-') : [];
-            if (mobile_split && mobile_split[0]) {
-                setMobile1(mobile_split[0]);
-            }
-            if (mobile_split && mobile_split[1]) {
-                setMobile2(mobile_split[1]);
-            }
-            if (mobile_split && mobile_split[2]) {
-                setMobile3(mobile_split[2]);
-            }
+                const mobile_split = userInfo ? userInfo['user_mobile'].split('-') : [];
+                if (mobile_split && mobile_split[0]) {
+                    setMobile1(mobile_split[0]);
+                }
+                if (mobile_split && mobile_split[1]) {
+                    setMobile2(mobile_split[1]);
+                }
+                if (mobile_split && mobile_split[2]) {
+                    setMobile3(mobile_split[2]);
+                }
 
-            setLoading(false);
+                setLoading(false);
+            } catch (error) {
+                await axiosErrorHandle(error, router);
+                setLoading(false);
+            }
         }
 
         fetch();

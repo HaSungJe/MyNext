@@ -119,18 +119,3 @@ export async function deleteToken(): Promise<boolean> {
         return false;
     }
 }
-
-/**
- * 회원 정보 얻기
- * 
- * @returns 
- */
-export async function getUserInfo(): Promise<object | null> {
-    try {
-        const accessToken = await getAccessToken();
-        const response = await axios.get(`${process.env.NEXT_PUBLIC_API_URL}/api/user/info`, {headers: {token: accessToken}});
-        return response.data.info;
-    } catch (error) {
-        return null;
-    }
-}
