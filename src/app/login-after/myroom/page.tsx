@@ -93,12 +93,12 @@ export default function Page() {
         return (
             <div id="container">
                 <div id="contents"> 
-                    <div className="inner">
+                    <div className="">
                         <h2>정보수정</h2>
-                        <div className="col-box">
-                            <div className="card">
-                                <div className="col info_area">
-                                    <table className="board_write mb20">
+                        <div className="">
+                            <div className="">
+                                <div className="">
+                                    <table className="">
                                         <colgroup>
                                             <col style={{width: '200px'}}/>
                                             <col style={{width: 'auto'}}/>
@@ -111,39 +111,39 @@ export default function Page() {
                                             <tr>
                                                 <th>이름</th>
                                                 <td>
-                                                    <input type="text" autoComplete="one-time-code" className="text" size={40} value={user_name} onChange={() => changeFunction(event, setUserName)}/>
+                                                    <input type="text" autoComplete="one-time-code" className="" size={40} value={user_name} onChange={() => changeFunction(event, setUserName)}/>
                                                     <span data-type="alert_span" data-val="user_name" className="" />
                                                 </td>
                                             </tr>
                                             <tr>
-                                                <th><span className="ip_ico">필수입력</span>대화명</th>
+                                                <th><span className="">필수입력</span>대화명</th>
                                                 <td>
-                                                    <input type="text" autoComplete="one-time-code" className="text" size={40} value={user_nickname} onChange={() => changeFunction(event, setUserNickname)}/>
+                                                    <input type="text" autoComplete="one-time-code" className="" size={40} value={user_nickname} onChange={() => changeFunction(event, setUserNickname)}/>
                                                     <span data-type="alert_span" data-val="user_nickname" className="" />
                                                 </td>
                                             </tr>
                                             <tr>
                                                 <th>비밀번호</th>
                                                 <td>
-                                                    <input type="password" autoComplete="one-time-code" className="text" size={40} value={user_pw} onChange={() => changeFunction(event, setUserPw)}/>
+                                                    <input type="password" autoComplete="one-time-code" className="" size={40} value={user_pw} onChange={() => changeFunction(event, setUserPw)}/>
                                                     <span data-type="alert_span" data-val="user_pw" className="" />
                                                 </td>
                                             </tr>
                                             <tr>
                                                 <th>비밀번호 확인</th>
                                                 <td>
-                                                    <input type="password" autoComplete="one-time-code" className="text" size={40} value={user_pw2} onChange={() => changeFunction(event, setUserPw2)}/>
+                                                    <input type="password" autoComplete="one-time-code" className="" size={40} value={user_pw2} onChange={() => changeFunction(event, setUserPw2)}/>
                                                     <span data-type="alert_span" data-val="user_pw2" className="" />
                                                 </td>
                                             </tr>
                                             <tr>
                                                 <th>연락처</th>
                                                 <td className="phone">
-                                                    <input type="number" autoComplete="one-time-code" className="text" value={mobile1} onChange={() => changeFunction(event, setMobile1)}/>
+                                                    <input type="number" autoComplete="one-time-code" className="" value={mobile1} onChange={() => changeFunction(event, setMobile1)}/>
                                                     <span>-</span> 
-                                                    <input type="number" autoComplete="one-time-code" className="text" value={mobile2} onChange={() => changeFunction(event, setMobile2)}/>
+                                                    <input type="number" autoComplete="one-time-code" className="" value={mobile2} onChange={() => changeFunction(event, setMobile2)}/>
                                                     <span>-</span>
-                                                    <input type="number" autoComplete="one-time-code" className="text" value={mobile3} onChange={() => changeFunction(event, setMobile3)}/>
+                                                    <input type="number" autoComplete="one-time-code" className="" value={mobile3} onChange={() => changeFunction(event, setMobile3)}/>
                                                     <span data-type="alert_span" data-val="user_mobile" className="" />
                                                 </td>
                                             </tr>

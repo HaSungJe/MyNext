@@ -6,6 +6,7 @@ import MenuBar from '@/component/menu';
 import Loading from '@/component/loading';
 import { axiosGet } from '@/util/axios';
 import { axiosErrorHandle } from '@/util/util';
+import '@style/globals.css';
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
     const router = useRouter();

@@ -69,22 +69,26 @@ export default function Login() {
     })
 
     return (
-        <div className="div.login_area_top">
+        <div className="">
+            <div className="text-red-500 text-center p-10">
+                <h1 className="text-3xl font-bold">Tailwind CSS 테스트</h1>
+            </div>
+
             <form>
-                <div id="wrap">
-                    <div className="login_bg_area">
-                        <div className="bg_overlay" />
+                <div id="">
+                    <div className="">
+                        <div className="" />
                     </div>
                     
-                    <div className="login_area">
+                    <div className="">
                         <h1><span>MyNext</span></h1>
 
-                        <div className="login_box">
-                            <div className="login">
+                        <div className="">
+                            <div className="">
                                 <h2>Welcome !</h2>
                                 <p>Sign in</p>
                             </div>
-                            <div className="in_box">
+                            <div className="">
                                 <ul>
                                     <li>
                                         <input type="text" autoComplete="userId" placeholder="이메일을 입력하세요." value={userId} onChange={() => changeFunction(event, setUserId)}/>
@@ -96,12 +100,12 @@ export default function Login() {
                                     </li>
                                 </ul>
                             </div>
-                            <p className="btn_login">
+                            <p className="">
                                 <button className="btn2" type="button" id="loginBtn" onClick={() => submit()}>로그인</button>
                             </p>
-                            <div className="check_info">
-                                <p className="id_check">
-                                    <span className="input">
+                            <div className="">
+                                <p className="">
+                                    <span className="">
                                         <input id="saveCheckbox" type="checkbox" className="checkbox"/>
                                         <label htmlFor="saveCheckbox">아이디 저장하기</label>
                                     </span>

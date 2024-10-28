@@ -31,9 +31,9 @@ export default function MenuBar( {info}: MenuBarProps ) {
         <div id="aside">
             <div id="gnb">
                 <ul>
-                    <li className="bg" data-type="MENU" data-value="DASHBOARD"><Link href="/dashboard">대시보드</Link></li>
+                    <li className="" data-type="MENU" data-value="DASHBOARD"><Link href="/dashboard">대시보드</Link></li>
                     
-                    <li className="bg" data-type="MENU" data-value="USER"><Link href="/user/list">회원관리</Link>
+                    <li className="" data-type="MENU" data-value="USER"><Link href="/user/list">회원관리</Link>
                         <ul>
                             <li data-type="SUB_MENU" data-value="USER_LIST"><Link href="/user/list">회원목록</Link></li>
                         </ul>

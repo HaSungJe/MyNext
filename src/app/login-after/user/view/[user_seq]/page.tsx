@@ -45,10 +45,10 @@ export default function Page() {
                 <div id="contents">
                     <div className="inner">
                         <h2>회원정보</h2>
-                        <div className="col-box">
-                            <div className="card">
-                                <div className="col info_area">
-                                    <table className="board_write mb20">
+                        <div className="">
+                            <div className="">
+                                <div className="">
+                                    <table className="">
                                         <colgroup>
                                             <col style={{width: '15%'}}/>
                                             <col style={{width: '35%'}}/>
@@ -71,9 +71,9 @@ export default function Page() {
                                         </tbody>
                                     </table>
     
-                                    <div className="btn_area t_center">
-                                        <Link href={`/user/list${queryStr}`} className="n-btn btn-gray">목록</Link> 
-                                        <Link href={`/user/modify/${user_seq}${queryStr}`} className="n-btn btn-blue">수정</Link>
+                                    <div className="">
+                                        <Link href={`/user/list${queryStr}`} className="">목록</Link> 
+                                        <Link href={`/user/modify/${user_seq}${queryStr}`} className="">수정</Link>
                                     </div>
                                 </div>
                             </div>

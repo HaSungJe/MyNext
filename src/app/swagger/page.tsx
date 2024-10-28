@@ -4,6 +4,7 @@ import Loading from "@/component/loading";
 import { useRouter } from "next/navigation";
 import SwaggerUI from "swagger-ui-react"
 import "swagger-ui-react/swagger-ui.css";
+import spec from './spec.json';
 
 export default function Page() {
     const router = useRouter();
@@ -33,7 +34,8 @@ export default function Page() {
                                         <div className="tab_content">
                                             <SwaggerUI 
                                                 // url="/swagger-json"
-                                                url={'https://petstore.swagger.io/v2/swagger.json'}
+                                                // url={'https://petstore.swagger.io/v2/swagger.json'}
+                                                spec={spec}
                                             />
                                         </div>
                                     </div> 

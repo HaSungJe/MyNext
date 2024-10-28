@@ -34,10 +34,10 @@ export function Info( {info}: InfoProps ) {
                     </div>
                 </Link>
             </h1>
-            <div className="user-info"> 
-                <p className="user_name">{info?.user_nickname}</p>
-                <p className="myinfo"><Link href={`/myroom`}>정보수정</Link></p>
-                <p className="logout"><button type="button" onClick={logout}>로그아웃</button></p>
+            <div className=""> 
+                <p className="">{info?.user_nickname}</p>
+                <p className=""><Link href={`/myroom`}>정보수정</Link></p>
+                <p className=""><button type="button" onClick={logout}>로그아웃</button></p>
             </div>
         </div>
     )

@@ -3,7 +3,7 @@ import { checkAuth } from '@/api/auth';
 import Loading from '@/component/loading';
 import { useRouter } from 'next/navigation';
 import { useEffect, useState } from 'react';
-
+import '@style/globals.css';
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
     const router = useRouter();

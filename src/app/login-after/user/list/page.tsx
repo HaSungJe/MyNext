@@ -91,32 +91,32 @@ export default function Page() {
         return (
             <div id="container">
                 <div id="contents">
-                    <div className="inner">
+                    <div className="">
                         <h2>회원관리</h2>
-                        <div className="col-box">
-                            <div className="card mb20">
-                                <div className="search-box search-boxtop">
+                        <div className="">
+                            <div className="">
+                                <div className="">
                                     <p>
                                         <label htmlFor="search_type">기본검색</label>
-                                        <select id="search_type" className="select small ml10" value={search_type} onChange={() => changeFunction(event, setSearchType)} >
+                                        <select id="search_type" className="" value={search_type} onChange={() => changeFunction(event, setSearchType)} >
                                             <option value="ALL">전체</option>
                                             <option value="EMAIL">이메일</option>
                                             <option value="NAME" >이름</option>
                                             <option value="NICKNAME" >대화명</option>
                                         </select>
                                         
-                                        <label htmlFor="search_val" className="ml30">검색어 입력</label>
-                                        <input id="search_val" autoComplete="one-time-code" type="text" className="text" size={50} placeholder="검색어를 입력하세요." value={search_val} onChange={() => changeFunction(event, setSearchVal)}/>
+                                        <label htmlFor="search_val" className="">검색어 입력</label>
+                                        <input id="search_val" autoComplete="one-time-code" type="text" className="" size={50} placeholder="검색어를 입력하세요." value={search_val} onChange={() => changeFunction(event, setSearchVal)}/>
                                         
-                                        <button type="button" className="n-btn btn-blue ml10" onClick={() => action()}>검색</button>
+                                        <button type="button" className="" onClick={() => action()}>검색</button>
                                     </p>
                                     <p>
-                                        <select className="select small" value={size} onChange={() => changeFunction(event, setSize)}>
+                                        <select className="" value={size} onChange={() => changeFunction(event, setSize)}>
                                             <option value="20">20개 보기</option>
                                             <option value="50">50개 보기</option>
                                             <option value="100">100개 보기</option>
                                         </select>
-                                        <select className="select small" value={sort_type} onChange={() => changeFunction(event, setSortType)}>
+                                        <select className="" value={sort_type} onChange={() => changeFunction(event, setSortType)}>
                                             <option value="NEW">등록일순</option>
                                             <option value="EMAIL">이메일순</option>
                                             <option value="NICKNAME">대화명순</option>
@@ -125,18 +125,18 @@ export default function Page() {
                                 </div> 
                             </div>
     
-                            <div className="card">
-                                <div className="board_h">
-                                    <p className="al_l">
+                            <div className="">
+                                <div className="">
+                                    <p className="">
                                         <CountInfo pageInfo={pageInfo}/>
                                     </p>
-                                    <p className="al_r">
-                                        <button type="button" className="n-btn btn-excel-down" onClick={excel}>엑셀 다운로드</button>
+                                    <p className="">
+                                        <button type="button" className="" onClick={excel}>엑셀 다운로드</button>
                                         <button className="n-btn x-regi" onClick={put}>등록</button>
                                     </p>
                                 </div>
     
-                                <table className="board_list">
+                                <table className="">
                                     <colgroup>
                                         <col style={{width: '70px'}}/>
                                         <col style={{width: '70px'}}/>
@@ -150,10 +150,10 @@ export default function Page() {
                                     <thead>
                                         <tr>
                                             <th scope="col">
-                                                <span className="input">
-                                                    <input id="all_select" type="checkbox" className="checkbox" data-type="checkbox" onChange={selectboxAllCheck}/>
+                                                <span className="">
+                                                    <input id="all_select" type="checkbox" className="" data-type="checkbox" onChange={selectboxAllCheck}/>
                                                     <label htmlFor="all_select">
-                                                        <span className="blind">선택</span>
+                                                        <span className="">선택</span>
                                                     </label>
                                                 </span>
                                             </th>
@@ -170,11 +170,11 @@ export default function Page() {
                                         <List list={userList} pageInfo={pageInfo} queryStr={queryStr} deleteFunction={deleteData}/>
                                     </tbody>
                                 </table>
-                                <div className="board_f">
-                                    <p className="btn-a-left">
+                                <div className="">
+                                    <p className="">
                                         {
                                             userList && userList.length > 0 ?
-                                            <button type="button" className="n-btn btn-delete" onClick={() => deleteData(null)}>선택삭제</button> 
+                                            <button type="button" className="" onClick={() => deleteData(null)}>선택삭제</button> 
                                             :
                                             ''
                                         }

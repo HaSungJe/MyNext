@@ -2,8 +2,6 @@
 import dynamic from "next/dynamic";
 import { useEffect, useState } from "react";
 import { axiosErrorHandle } from "@/util/util";
-import { axiosGet } from "@/util/axios";
-import moment from 'moment';
 import Loading from "@/component/loading";
 import { useRouter } from "next/navigation";
 const DonutChart = dynamic(() => import('@component/chart/donut'), { ssr: false });

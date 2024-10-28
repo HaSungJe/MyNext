@@ -20,12 +20,12 @@ export function PageNation( {pageInfo, pageFunc}: PageNationProps ) {
     
         return (
             <>
-                <div className="pagination">
-                    <button key={`page_first`} type="button" className="btn first" onClick={() => movePage(1, pageFunc)}>처음페이지로</button>
-                    <button key={`page_prev`} type="button" className="btn prev" onClick={() => movePage(before_page, pageFunc)}>이전페이지로</button>
+                <div className="">
+                    <button key={`page_first`} type="button" className="" onClick={() => movePage(1, pageFunc)}>처음페이지로</button>
+                    <button key={`page_prev`} type="button" className="" onClick={() => movePage(before_page, pageFunc)}>이전페이지로</button>
                     <PageItem pageInfo={pageInfo} pageFunc={pageFunc}/>
-                    <button key={`page_next`} type="button" className="btn next" onClick={() => movePage(after_page, pageFunc)}>다음페이지로</button>
-                    <button key={`page_last`} type="button" className="btn last" onClick={() => movePage(pageInfo.maxPage, pageFunc)}>마지막페이지로</button>
+                    <button key={`page_next`} type="button" className="" onClick={() => movePage(after_page, pageFunc)}>다음페이지로</button>
+                    <button key={`page_last`} type="button" className="" onClick={() => movePage(pageInfo.maxPage, pageFunc)}>마지막페이지로</button>
                 </div>
             </>
         );

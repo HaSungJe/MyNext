@@ -1,6 +1,4 @@
 'use server';
-// import '@style/css/import.css';
-import '@style/css/xeicon.min.css';
 
 export default async function RootLayout({ children }: { children: React.ReactNode }) {
     return (

@@ -18,7 +18,7 @@ const nextConfig = {
         return [
             {
                 source: '/swagger-json',
-                destination: 'http://localhost:3000/swagger-json', // NestJS API URL
+                destination: 'https://app.daylog.co.kr/_API/swagger-json', // NestJS API URL
             },
             {
                 source: `${process.env.NEXT_PUBLIC_LOCAL_SERVER_PREFIX}/:path*`,
