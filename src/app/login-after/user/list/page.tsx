@@ -13,6 +13,7 @@ export default function Page() {
     const router = useRouter();
     const searchParams = useSearchParams();
     const [loading, setLoading] = useState(true);
+    const [searching, setSearching] = useState(true);
     const [pageInfo, setPageInfo] = useState({});
     const [userList, setUserList] = useState([]);
     const [queryStr, setQueryStr] = useState('');
@@ -70,11 +71,13 @@ export default function Page() {
         const fetch = async () => {
             try {
                 // 목록, 페이지
+                setSearching(true);
                 const response = await axiosGet(router, `${process.env.NEXT_PUBLIC_API_URL}/api/admin/user/list${queryStr}`);
                 setUserList(response.data.list);
                 response.data.pageInfo.original_total_count = response.data.totalCount;
                 setPageInfo(response.data.pageInfo);
                 setLoading(false);
+                setSearching(false);
             } catch (error: any) {
                 await axiosErrorHandle(error, router);
             }
@@ -167,7 +170,7 @@ export default function Page() {
                                         </tr>
                                     </thead>
                                     <tbody>
-                                        <List list={userList} pageInfo={pageInfo} queryStr={queryStr} deleteFunction={deleteData}/>
+                                        <List searching={searching} list={userList} pageInfo={pageInfo} queryStr={queryStr} deleteFunction={deleteData}/>
                                     </tbody>
                                 </table>
                                 <div className="">

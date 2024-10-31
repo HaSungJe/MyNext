@@ -1,6 +1,7 @@
-'use server';
+'use client';
+import NextTopLoader from 'nextjs-toploader';
 
-export default async function RootLayout({ children }: { children: React.ReactNode }) {
+export default function RootLayout({ children }: { children: React.ReactNode }) {
     return (
         <html lang="ko">
             <head>
@@ -8,7 +9,10 @@ export default async function RootLayout({ children }: { children: React.ReactNo
                 <meta charSet="UTF-8" />
                 <title>{process.env.SERVER_NAME}</title>
             </head>
-            <body>{children}</body>
+            <body>
+                <NextTopLoader showSpinner={false} />
+                {children}
+            </body>
         </html>
     )
 }
