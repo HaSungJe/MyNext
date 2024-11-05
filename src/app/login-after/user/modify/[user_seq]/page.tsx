@@ -37,7 +37,7 @@ export default function Page() {
         const check = await validateAction(dto);
         if (check) {
             try {
-                await axiosPatch(router, `${process.env.NEXT_PUBLIC_API_URL}/api/admin/user`, dto);
+                // await axiosPatch(router, `${process.env.NEXT_PUBLIC_API_URL}/api/admin/user`, dto);
                 
                 alert('수정되었습니다.');
                 router.push(`/user/view/${user_seq}${queryStr}`);
@@ -75,14 +75,24 @@ export default function Page() {
         const fetch = async () => {
             // 회원정보
             try {
-                const response = await axiosGet(router, `${process.env.NEXT_PUBLIC_API_URL}/api/admin/user/view/${user_seq}`);
-                setUserEmail(response.data.info['user_email'] ? response.data.info['user_email'] : '');
-                setUserName(response.data.info['user_name'] ? response.data.info['user_name'] : '');
-                setUserNickname(response.data.info['user_nickname'] ? response.data.info['user_nickname'] : '');
-                setUserBirth(response.data.info['user_birth'] ? response.data.info['user_birth'] : '');
-                setUserMobile(response.data.info['user_mobile'] ? response.data.info['user_mobile'] : '');
-                setUserGender(response.data.info['user_gender'] ? response.data.info['user_gender'] : 'M');
-                setRegionCode(response.data.info['region_code'] ? response.data.info['region_code'] : '');
+                // const response = await axiosGet(router, `${process.env.NEXT_PUBLIC_API_URL}/api/admin/user/view/${user_seq}`);
+                // setUserEmail(response.data.info['user_email'] ? response.data.info['user_email'] : '');
+                // setUserName(response.data.info['user_name'] ? response.data.info['user_name'] : '');
+                // setUserNickname(response.data.info['user_nickname'] ? response.data.info['user_nickname'] : '');
+                // setUserBirth(response.data.info['user_birth'] ? response.data.info['user_birth'] : '');
+                // setUserMobile(response.data.info['user_mobile'] ? response.data.info['user_mobile'] : '');
+                // setUserGender(response.data.info['user_gender'] ? response.data.info['user_gender'] : 'M');
+                // setRegionCode(response.data.info['region_code'] ? response.data.info['region_code'] : '');
+
+
+                setUserEmail('test@naver.com');
+                setUserName('김멍멍');
+                setUserNickname('김멍멍');
+                setUserBirth('199-05-09');
+                setUserMobile('010-1234-1234');
+                setUserGender('M');
+                setRegionCode('26010');
+
                 setLoading(false);
             } catch (error: any) {
                 await axiosErrorHandle(error, router);

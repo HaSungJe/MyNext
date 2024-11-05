@@ -35,7 +35,7 @@ export default function Page() {
         const check = await validateAction(dto);
         if (check) {
             try {
-                await axiosPut(router, `${process.env.NEXT_PUBLIC_API_URL}/api/admin/user`, dto);
+                // await axiosPut(router, `${process.env.NEXT_PUBLIC_API_URL}/api/admin/user`, dto);
                 
                 alert('등록되었습니다.');
                 router.push(`/user/list`);

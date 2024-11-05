@@ -17,10 +17,6 @@ const nextConfig = {
     async rewrites() {
         return [
             {
-                source: '/swagger-json',
-                destination: 'https://app.daylog.co.kr/_API/swagger-json', // NestJS API URL
-            },
-            {
                 source: `${process.env.NEXT_PUBLIC_LOCAL_SERVER_PREFIX}/:path*`,
                 destination: `/:path*`
             },

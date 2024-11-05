@@ -23,8 +23,17 @@ export default function Page() {
     useEffect(() => {
         const fetch = async () => {
             try {
-                const response = await axiosGet(router, `${process.env.NEXT_PUBLIC_API_URL}/api/admin/user/view/${user_seq}`);
-                setUser(response.data.info);
+                // const response = await axiosGet(router, `${process.env.NEXT_PUBLIC_API_URL}/api/admin/user/view/${user_seq}`);
+                // setUser(response.data.info);
+
+                setUser({
+                    user_email: 'test@naver.com',
+                    user_nickname: '김멍멍',
+                    user_mobile: '010-1234-1234',
+                    provider_name: '네이버',
+                    reg_dt: '2024-11-05 09:34:00'
+                });
+
                 setLoading(false);
             } catch (error: any) {
                 await axiosErrorHandle(error, router);

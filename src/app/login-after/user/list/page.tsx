@@ -58,7 +58,7 @@ export default function Page() {
 
     // 엑셀 다운로드
     async function excel(): Promise<void> {
-        await axiosExcelDown(router, `회원 목록`, `${process.env.NEXT_PUBLIC_API_URL}/api/admin/excel/download/user/list${queryStr}`);
+        // await axiosExcelDown(router, `회원 목록`, `${process.env.NEXT_PUBLIC_API_URL}/api/admin/excel/download/user/list${queryStr}`);
     }
 
     // 등록페이지
@@ -72,10 +72,52 @@ export default function Page() {
             try {
                 // 목록, 페이지
                 setSearching(true);
-                const response = await axiosGet(router, `${process.env.NEXT_PUBLIC_API_URL}/api/admin/user/list${queryStr}`);
-                setUserList(response.data.list);
-                response.data.pageInfo.original_total_count = response.data.totalCount;
-                setPageInfo(response.data.pageInfo);
+                // const response = await axiosGet(router, `${process.env.NEXT_PUBLIC_API_URL}/api/admin/user/list${queryStr}`);
+                // setUserList(response.data.list);
+                // response.data.pageInfo.original_total_count = response.data.totalCount;
+                // setPageInfo(response.data.pageInfo);
+
+                const response = {
+                    statusCode: 200,
+                    pageInfo: {
+                        totalCount: 6938,
+                        page: 1,
+                        maxPage: 347,
+                        pageRange: {
+                            start: 1,
+                            end: 10
+                        },
+                    }
+                }
+
+                const list = [];
+                for (let i=0; i<20; i++) {
+                    list.push(
+                        {
+                            "user_seq": 7147,
+                            "level_code": "COLORLESS",
+                            "level_name": "ColorLess",
+                            "user_email": "NAVER20241104142442",
+                            "auth_code": "USER",
+                            "auth_name": "일반",
+                            "provider_name": "네이버",
+                            "user_nickname": null,
+                            "user_mobile": null,
+                            "user_birth": null,
+                            "age": null,
+                            "hos_name": null,
+                            "region": "인천광역시 연수구",
+                            "child_birth": null,
+                            "date_of_due": null,
+                            "child_name": null,
+                            "reg_dt": "2024-11-04 14:24"
+                        },
+                    )
+                }
+                setUserList(list);
+                setPageInfo(response.pageInfo);
+
+
                 setLoading(false);
                 setSearching(false);
             } catch (error: any) {

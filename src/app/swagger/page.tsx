@@ -33,8 +33,6 @@ export default function Page() {
                                     <div className="tab_container">
                                         <div className="tab_content">
                                             <SwaggerUI 
-                                                // url="/swagger-json"
-                                                // url={'https://petstore.swagger.io/v2/swagger.json'}
                                                 spec={spec}
                                             />
                                         </div>
