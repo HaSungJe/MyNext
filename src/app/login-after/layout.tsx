@@ -17,8 +17,12 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
     useEffect(() => {
         const fetch = async () => {
             try {
-                const response = await axiosGet(router, `${process.env.NEXT_PUBLIC_API_URL}/api/user/info`);
-                setUserInfo(response.data.info)
+                // const response = await axiosGet(router, `${process.env.NEXT_PUBLIC_API_URL}/api/user/info`);
+                // setUserInfo(response.data.info)
+                setUserInfo({
+                    user_nickname: '김멍멍'
+                })
+
                 setLoading(false);
             } catch (error) {
                 await axiosErrorHandle(error, router);

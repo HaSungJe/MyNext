@@ -45,14 +45,16 @@ export async function checkRefreshToken(): Promise<boolean> {
     const refreshToken = cookies().get('refreshToken');
 
     if (refreshToken && refreshToken.value) {
-        const response = await axios.get(`${process.env.NEXT_PUBLIC_API_URL}/api/admin/user/refresh`, {headers: {token: refreshToken?.value}});
+        // const response = await axios.get(`${process.env.NEXT_PUBLIC_API_URL}/api/admin/user/refresh`, {headers: {token: refreshToken?.value}});
 
-        if (response.data.statusCode === 200) {
-            return await setAccessToken(response.data.access_token, response.data.access_token_end_dt);
-        } else {
-            deleteToken();
-            return false;
-        }
+        // if (response.data.statusCode === 200) {
+        //     return await setAccessToken(response.data.access_token, response.data.access_token_end_dt);
+        // } else {
+        //     deleteToken();
+        //     return false;
+        // }
+
+        return await setAccessToken(`access_${new Date().getTime()}`, null);
     } else {
         return false;
     }
@@ -89,7 +91,9 @@ export async function setRefreshToken(refreshToken: string): Promise<boolean> {
  */
 export async function setAccessToken(accessToken: string, endTime: string): Promise<boolean> {
     try {
-        const setTime = new Date(new Date(endTime).getTime() - (60 * 1000)); // 유지시간보다 1분 빨리 끝나도록해서 가능한 재발급받도록
+        // const setTime = new Date(new Date(endTime).getTime() - (60 * 1000)); // 유지시간보다 1분 빨리 끝나도록해서 가능한 재발급받도록
+        const setTime = new Date(new Date().getTime() + (60 * 1000 * 19)); // 현재시간 + 19분
+
         cookies().set('accessToken', accessToken, {
             path: "/",
             // domain: process.env.NEXT_PUBLIC_SERVER_URI,

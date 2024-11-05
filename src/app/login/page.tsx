@@ -7,7 +7,6 @@ import { axiosPost } from "@/util/axios";
 import Link from "next/link";
 import Image from "next/image";
 
-
 export default function Login() {
     const router = useRouter();
     const [userId, setUserId] = useState('');
@@ -16,10 +15,10 @@ export default function Login() {
     // 로그인
     async function submit() {
         try {
-            const response = await axiosPost(router, `${process.env.NEXT_PUBLIC_API_URL}/api/admin/user/login`, {
-                user_email: userId,
-                user_pw: userPw
-            })
+            // const response = await axiosPost(router, `${process.env.NEXT_PUBLIC_API_URL}/api/admin/user/login`, {
+            //     user_email: userId,
+            //     user_pw: userPw
+            // });
 
             const checkbox: HTMLInputElement | null = document.getElementById('saveCheckbox') as HTMLInputElement | null;
             if (checkbox.checked) {
@@ -28,8 +27,11 @@ export default function Login() {
                 localStorage.removeItem('saveId');
             }
 
-            await setRefreshToken(response.data.refresh_token);
-            await setAccessToken(response.data.access_token, response.data.access_token_end_dt);
+            await setRefreshToken(`refresh_${new Date().getTime()}`);
+            await setAccessToken(`access_${new Date().getTime()}`, null);
+            
+            // await setRefreshToken(response.data.refresh_token);
+            // await setAccessToken(response.data.access_token, response.data.access_token_end_dt);
             router.push("/dashboard");
         } catch (error: any) {
             alert(error.response.data.message || '실패했습니다.')
