@@ -70,7 +70,6 @@ export async function setRefreshToken(refreshToken: string): Promise<boolean> {
     try {
         cookies().set('refreshToken', refreshToken, {
             path: "/",
-            // domain: process.env.NEXT_PUBLIC_SERVER_URI,
             httpOnly: true,
             sameSite: "strict",
             secure: process.env.NODE_ENV === 'development' ? false : true, 
@@ -96,7 +95,6 @@ export async function setAccessToken(accessToken: string, endTime: string): Prom
 
         cookies().set('accessToken', accessToken, {
             path: "/",
-            // domain: process.env.NEXT_PUBLIC_SERVER_URI,
             httpOnly: true,
             sameSite: "strict",
             secure: process.env.NODE_ENV === 'development' ? false : true,

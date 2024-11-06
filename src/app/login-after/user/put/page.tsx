@@ -147,7 +147,7 @@ export default function Page() {
                     <Link href={`/user/list${queryStr}`} className="">취소</Link> 
                     <button className="" onClick={action}>등록</button>
                 </div>
-            </div>   
+            </div>
         )
     }
 }

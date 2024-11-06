@@ -1,7 +1,7 @@
-'use client';
+'use server';
 import NextTopLoader from 'nextjs-toploader';
 
-export default function RootLayout({ children }: { children: React.ReactNode }) {
+export default async function RootLayout({ children }: { children: React.ReactNode }) {
     return (
         <html lang="ko">
             <head>
