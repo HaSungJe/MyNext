@@ -75,90 +75,79 @@ export default function Page() {
         )
     } else {
         return (
-            <div id="container">
-                <div id="contents">
-                    <div className="">
-                        <h2>회원등록</h2>
-                        <div className="">
-                            <div className="">
-                                <div className="">
-                                    <form>
-                                        <table className="">
-                                            <colgroup>
-                                                <col style={{width: '15%'}} />
-                                                <col style={{width: '35%'}} />
-                                                <col style={{width: '15%'}} />
-                                                <col style={{width: '35%'}} />
-                                            </colgroup>
-                                            <tbody>
-                                                <tr>
-                                                    <th><span className="">필수입력</span>이메일</th>
-                                                    <td>
-                                                        <input type="text" autoComplete="one-time-code" className="" value={user_email} onChange={() => changeFunction(event, setUserEmail)}/>
-                                                        <span data-type="alert_span" data-val="user_email" className="" />
-                                                    </td>
-                                                    <th>이름</th>
-                                                    <td>
-                                                        <input type="text" autoComplete="one-time-code" className="" value={user_name} onChange={() => changeFunction(event, setUserName)}/>
-                                                        <span data-type="alert_span" data-val="user_name" className="" />
-                                                    </td>
-                                                </tr>
-                                                <tr>
-                                                    <th><span className="">필수입력</span>대화명</th>
-                                                    <td>
-                                                        <input type="text" autoComplete="one-time-code" className="" value={user_nickname} onChange={() => changeFunction(event, setUserNickname)}/>
-                                                        <span data-type="alert_span" data-val="user_nickname" className="" />
-                                                    </td>
-                                                    <th>연락처</th>
-                                                    <td className="">
-                                                        <input type="number" autoComplete="one-time-code" className="" value={mobile1} onChange={() => changeFunction(event, setMobile1)}/>
-                                                        <span>-</span> 
-                                                        <input type="number" autoComplete="one-time-code" className="" value={mobile2} onChange={() => changeFunction(event, setMobile2)}/>
-                                                        <span>-</span>
-                                                        <input type="number" autoComplete="one-time-code" className="" value={mobile3} onChange={() => changeFunction(event, setMobile3)}/>
-                                                        <span data-type="alert_span" data-val="user_mobile" className="" />
-                                                    </td>
-                                                </tr>
-                                                <tr>
-                                                    <th><span className="ip_ico">필수입력</span>비밀번호</th>
-                                                    <td>
-                                                        <input type="password" autoComplete="one-time-code" className="" value={user_pw} onChange={() => changeFunction(event, setUserPw)}/>
-                                                        <span data-type="alert_span" data-val="user_pw" className="" />
-                                                    </td>
-                                                    <th><span className="ip_ico">필수입력</span>비밀번호확인</th>
-                                                    <td>
-                                                        <input type="password" autoComplete="one-time-code" className="" value={user_pw2} onChange={() => changeFunction(event, setUserPw2)}/>
-                                                        <span data-type="alert_span" data-val="user_pw2" className="" />
-                                                    </td>
-                                                </tr>  
-                                                <tr>
-                                                    <th>생년월일</th>
-                                                    <td>
-                                                        <input type="date" autoComplete="one-time-code" className="" value={user_birth} onChange={() => changeFunction(event, setUserBirth)}/>
-                                                        <span data-type="alert_span" data-val="user_birth" className="" />
-                                                    </td>
-                                                    <th>성별</th>
-                                                    <td>
-                                                        <select className="" value={user_gender} onChange={() => changeFunction(event, setUserGender)}>
-                                                            <option value="M">남성</option>
-                                                            <option value="F">여성</option>
-                                                        </select>
-                                                    </td>
-                                                </tr>
-                                            </tbody>
-                                        </table>
-                                    </form>
-    
-                                    <div className="">
-                                        <Link href={`/user/list${queryStr}`} className="">취소</Link> 
-                                        <button className="" onClick={action}>등록</button>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
+            <div>
+                <form>
+                    <table className="">
+                        <colgroup>
+                            <col style={{width: '15%'}} />
+                            <col style={{width: '35%'}} />
+                            <col style={{width: '15%'}} />
+                            <col style={{width: '35%'}} />
+                        </colgroup>
+                        <tbody>
+                            <tr>
+                                <th><span className="">필수입력</span>이메일</th>
+                                <td>
+                                    <input type="text" autoComplete="one-time-code" className="" value={user_email} onChange={() => changeFunction(event, setUserEmail)}/>
+                                    <span data-type="alert_span" data-val="user_email" className="" />
+                                </td>
+                                <th>이름</th>
+                                <td>
+                                    <input type="text" autoComplete="one-time-code" className="" value={user_name} onChange={() => changeFunction(event, setUserName)}/>
+                                    <span data-type="alert_span" data-val="user_name" className="" />
+                                </td>
+                            </tr>
+                            <tr>
+                                <th><span className="">필수입력</span>대화명</th>
+                                <td>
+                                    <input type="text" autoComplete="one-time-code" className="" value={user_nickname} onChange={() => changeFunction(event, setUserNickname)}/>
+                                    <span data-type="alert_span" data-val="user_nickname" className="" />
+                                </td>
+                                <th>연락처</th>
+                                <td className="">
+                                    <input type="number" autoComplete="one-time-code" className="" value={mobile1} onChange={() => changeFunction(event, setMobile1)}/>
+                                    <span>-</span> 
+                                    <input type="number" autoComplete="one-time-code" className="" value={mobile2} onChange={() => changeFunction(event, setMobile2)}/>
+                                    <span>-</span>
+                                    <input type="number" autoComplete="one-time-code" className="" value={mobile3} onChange={() => changeFunction(event, setMobile3)}/>
+                                    <span data-type="alert_span" data-val="user_mobile" className="" />
+                                </td>
+                            </tr>
+                            <tr>
+                                <th><span className="ip_ico">필수입력</span>비밀번호</th>
+                                <td>
+                                    <input type="password" autoComplete="one-time-code" className="" value={user_pw} onChange={() => changeFunction(event, setUserPw)}/>
+                                    <span data-type="alert_span" data-val="user_pw" className="" />
+                                </td>
+                                <th><span className="ip_ico">필수입력</span>비밀번호확인</th>
+                                <td>
+                                    <input type="password" autoComplete="one-time-code" className="" value={user_pw2} onChange={() => changeFunction(event, setUserPw2)}/>
+                                    <span data-type="alert_span" data-val="user_pw2" className="" />
+                                </td>
+                            </tr>  
+                            <tr>
+                                <th>생년월일</th>
+                                <td>
+                                    <input type="date" autoComplete="one-time-code" className="" value={user_birth} onChange={() => changeFunction(event, setUserBirth)}/>
+                                    <span data-type="alert_span" data-val="user_birth" className="" />
+                                </td>
+                                <th>성별</th>
+                                <td>
+                                    <select className="" value={user_gender} onChange={() => changeFunction(event, setUserGender)}>
+                                        <option value="M">남성</option>
+                                        <option value="F">여성</option>
+                                    </select>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </form>
+
+                <div className="">
+                    <Link href={`/user/list${queryStr}`} className="">취소</Link> 
+                    <button className="" onClick={action}>등록</button>
                 </div>
-            </div>
+            </div>   
         )
     }
 }

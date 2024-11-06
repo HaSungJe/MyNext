@@ -134,105 +134,10 @@ export default function Page() {
         )
     } else {
         return (
-            <div id="container">
-                <div id="contents">
-                    <div className="">
-                        <h2>회원관리</h2>
-                        <div className="">
-                            <div className="">
-                                <div className="">
-                                    <p>
-                                        <label htmlFor="search_type">기본검색</label>
-                                        <select id="search_type" className="" value={search_type} onChange={() => changeFunction(event, setSearchType)} >
-                                            <option value="ALL">전체</option>
-                                            <option value="EMAIL">이메일</option>
-                                            <option value="NAME" >이름</option>
-                                            <option value="NICKNAME" >대화명</option>
-                                        </select>
-                                        
-                                        <label htmlFor="search_val" className="">검색어 입력</label>
-                                        <input id="search_val" autoComplete="one-time-code" type="text" className="" size={50} placeholder="검색어를 입력하세요." value={search_val} onChange={() => changeFunction(event, setSearchVal)}/>
-                                        
-                                        <button type="button" className="" onClick={() => action()}>검색</button>
-                                    </p>
-                                    <p>
-                                        <select className="" value={size} onChange={() => changeFunction(event, setSize)}>
-                                            <option value="20">20개 보기</option>
-                                            <option value="50">50개 보기</option>
-                                            <option value="100">100개 보기</option>
-                                        </select>
-                                        <select className="" value={sort_type} onChange={() => changeFunction(event, setSortType)}>
-                                            <option value="NEW">등록일순</option>
-                                            <option value="EMAIL">이메일순</option>
-                                            <option value="NICKNAME">대화명순</option>
-                                        </select>
-                                    </p>
-                                </div> 
-                            </div>
-    
-                            <div className="">
-                                <div className="">
-                                    <p className="">
-                                        <CountInfo pageInfo={pageInfo}/>
-                                    </p>
-                                    <p className="">
-                                        <button type="button" className="" onClick={excel}>엑셀 다운로드</button>
-                                        <button className="n-btn x-regi" onClick={put}>등록</button>
-                                    </p>
-                                </div>
-    
-                                <table className="">
-                                    <colgroup>
-                                        <col style={{width: '70px'}}/>
-                                        <col style={{width: '70px'}}/>
-                                        <col style={{width: '100px'}}/>
-                                        <col style={{width: 'auto'}}/>
-                                        <col style={{width: '300px'}} />
-                                        <col style={{width: '120px'}} />
-                                        <col style={{width: '70px'}} />
-                                        <col style={{width: '70px'}} />
-                                    </colgroup>
-                                    <thead>
-                                        <tr>
-                                            <th scope="col">
-                                                <span className="">
-                                                    <input id="all_select" type="checkbox" className="" data-type="checkbox" onChange={selectboxAllCheck}/>
-                                                    <label htmlFor="all_select">
-                                                        <span className="">선택</span>
-                                                    </label>
-                                                </span>
-                                            </th>
-                                            <th scope="col">번호</th>
-                                            <th scope="col">가입유형</th>
-                                            <th scope="col">이메일</th>
-                                            <th scope="col">대화명</th>
-                                            <th scope="col">가입일</th>
-                                            <th scope="col">수정</th>
-                                            <th scope="col">삭제</th>
-                                        </tr>
-                                    </thead>
-                                    <tbody>
-                                        <List searching={searching} list={userList} pageInfo={pageInfo} queryStr={queryStr} deleteFunction={deleteData}/>
-                                    </tbody>
-                                </table>
-                                <div className="">
-                                    <p className="">
-                                        {
-                                            userList && userList.length > 0 ?
-                                            <button type="button" className="" onClick={() => deleteData(null)}>선택삭제</button> 
-                                            :
-                                            ''
-                                        }
-                                    </p>
-    
-                                    <PageNation pageInfo={pageInfo} pageFunc={setPage} />
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-    
-                <DeletePopup title={'회원정보 삭제'} apiUrl={`${process.env.NEXT_PUBLIC_API_URL}/api/admin/user`} searchFunction={search} router={router}/>
+            <div>
+                <List searching={searching} list={userList} pageInfo={pageInfo} queryStr={queryStr} deleteFunction={deleteData}/>
+                <PageNation pageInfo={pageInfo} pageFunc={setPage} />
+                <button type="button" className="" onClick={() => deleteData(null)}>선택삭제</button> 
             </div>
         )
     }

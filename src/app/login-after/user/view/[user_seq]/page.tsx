@@ -50,44 +50,33 @@ export default function Page() {
         )
     } else {
         return (
-            <div id="container">
-                <div id="contents">
-                    <div className="inner">
-                        <h2>회원정보</h2>
-                        <div className="">
-                            <div className="">
-                                <div className="">
-                                    <table className="">
-                                        <colgroup>
-                                            <col style={{width: '15%'}}/>
-                                            <col style={{width: '35%'}}/>
-                                            <col style={{width: '15%'}}/>
-                                            <col style={{width: '35%'}}/>
-                                        </colgroup>
-                                        <tbody>
-                                            <tr>
-                                                <th>이메일</th>
-                                                <td>{user['user_email']}</td>
-                                                <th>대화명</th>
-                                                <td>{user['user_nickname']}</td>
-                                            </tr>
-                                            <tr>
-                                                <th>연락처</th>
-                                                <td>{user['user_mobile']}</td>
-                                                <th>가입일</th>
-                                                <td>{user['reg_dt']}</td>
-                                            </tr>
-                                        </tbody>
-                                    </table>
-    
-                                    <div className="">
-                                        <Link href={`/user/list${queryStr}`} className="">목록</Link> 
-                                        <Link href={`/user/modify/${user_seq}${queryStr}`} className="">수정</Link>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
+            <div>
+                <table className="">
+                    <colgroup>
+                        <col style={{width: '15%'}}/>
+                        <col style={{width: '35%'}}/>
+                        <col style={{width: '15%'}}/>
+                        <col style={{width: '35%'}}/>
+                    </colgroup>
+                    <tbody>
+                        <tr>
+                            <th>이메일</th>
+                            <td>{user['user_email']}</td>
+                            <th>대화명</th>
+                            <td>{user['user_nickname']}</td>
+                        </tr>
+                        <tr>
+                            <th>연락처</th>
+                            <td>{user['user_mobile']}</td>
+                            <th>가입일</th>
+                            <td>{user['reg_dt']}</td>
+                        </tr>
+                    </tbody>
+                </table>
+
+                <div className="">
+                    <Link href={`/user/list${queryStr}`} className="">목록</Link> 
+                    <Link href={`/user/modify/${user_seq}${queryStr}`} className="">수정</Link>
                 </div>
             </div>
         )

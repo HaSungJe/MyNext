@@ -26,18 +26,14 @@ export default function MenuBar() {
     }, [pathname]);
 
     return (
-        <div id="aside">
-            <div id="gnb">
+        <ul>
+            <li className="" data-type="MENU" data-value="DASHBOARD"><Link href="/dashboard">대시보드</Link></li>
+            
+            <li className="" data-type="MENU" data-value="USER"><Link href="/user/list">회원관리</Link>
                 <ul>
-                    <li className="" data-type="MENU" data-value="DASHBOARD"><Link href="/dashboard">대시보드</Link></li>
-                    
-                    <li className="" data-type="MENU" data-value="USER"><Link href="/user/list">회원관리</Link>
-                        <ul>
-                            <li data-type="SUB_MENU" data-value="USER_LIST"><Link href="/user/list">회원목록</Link></li>
-                        </ul>
-                    </li>
+                    <li data-type="SUB_MENU" data-value="USER_LIST"><Link href="/user/list">회원목록</Link></li>
                 </ul>
-            </div>
-        </div>
+            </li>
+        </ul>
     )
 }
