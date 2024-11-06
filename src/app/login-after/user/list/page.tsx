@@ -43,19 +43,6 @@ export default function Page() {
         search();
     }, [queryStr]);
     
-    // 지역정보, 병원정보
-    useEffect(() => {
-        const setData = async () => {
-            try {
-
-            } catch (error: any) {
-                console.log(error)
-            }
-        }
-
-        setData();
-    }, []);
-
     // 엑셀 다운로드
     async function excel(): Promise<void> {
         // await axiosExcelDown(router, `회원 목록`, `${process.env.NEXT_PUBLIC_API_URL}/api/admin/excel/download/user/list${queryStr}`);
