@@ -22,7 +22,7 @@ export const table_schema = process.env.MYSQL_DATABASE;
  * @returns 
  */
 export async function select(sql: string, params: Array<string | number> = null) {
-    let conn = null;
+    const conn = await mysql2.getConnection();
 
     if ((params !== null && params !== undefined) && (params.length !== sql.split('?').length - 1)) {
         console.log("Query Binding Length Error !");
@@ -30,9 +30,6 @@ export async function select(sql: string, params: Array<string | number> = null)
     }
 
     try {    
-        conn = await mysql2.getConnection();
-
-        // params가 null일 경우
         if (params !== null && params !== undefined && params.length > 0) {
             let query = await execute(conn, sql, params);
             return query.result;
@@ -43,9 +40,7 @@ export async function select(sql: string, params: Array<string | number> = null)
     } catch (error) {
         return await errorMessageFilter(error);
     } finally {
-        if (null !== conn) {
-            conn.release();
-        }
+        conn.release();
     }
 }
 
@@ -57,8 +52,7 @@ export async function select(sql: string, params: Array<string | number> = null)
  * @returns 
  */
 export async function selectOne(sql: string, params: Array<string | number> = null) {
-    let rt = null;
-    let conn = null;
+    const conn = await mysql2.getConnection();
 
     if ((params !== null && params !== undefined) && (params.length !== sql.split('?').length - 1)) {
         console.log("Query Binding Length Error !");
@@ -66,8 +60,6 @@ export async function selectOne(sql: string, params: Array<string | number> = nu
     }
 
     try {    
-        conn = await mysql2.getConnection();
-
         // params가 null일 경우
         if (params !== null && params !== undefined && params.length > 0) {
             let query: any = await execute(conn, sql, params);
@@ -79,9 +71,7 @@ export async function selectOne(sql: string, params: Array<string | number> = nu
     } catch (error) {
         return await errorMessageFilter(error);
     } finally {
-        if (null !== conn) {
-            conn.release();
-        }
+        conn.release();
     }
 }
 
