@@ -25,9 +25,9 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
         )
     } else {
         return (
-            <body>
+            <>
                 {children}
-            </body>
+            </>
         )
     }
 }

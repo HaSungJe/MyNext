@@ -20,6 +20,11 @@ export default function Login() {
             //     user_pw: userPw
             // });
 
+            const response = await axiosPost(router, `/api/user/login`, {user_id: userId, user_pw: userPw});
+            console.log(response.status)
+
+            return false;
+
             const checkbox: HTMLInputElement | null = document.getElementById('saveCheckbox') as HTMLInputElement | null;
             if (checkbox.checked) {
                 localStorage.setItem('saveId', userId);
