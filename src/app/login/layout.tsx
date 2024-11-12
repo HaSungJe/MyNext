@@ -1,5 +1,5 @@
 'use client';
-import { checkAuth } from '@/api/auth';
+import { checkAuth } from '@/util/auth';
 import Loading from '@/component/loading';
 import { useRouter } from 'next/navigation';
 import { useEffect, useState } from 'react';

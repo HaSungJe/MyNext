@@ -1,6 +1,6 @@
 'use client';
 import axios from "axios";
-import { getAccessToken } from '@/api/auth';
+import { getAccessToken } from '@/util/auth';
 
 /**
  * 파일 업로드

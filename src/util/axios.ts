@@ -1,6 +1,6 @@
 'use client';
 import axios from 'axios';
-import { checkRefreshToken, deleteToken, getAccessToken } from '@/api/auth';
+import { checkRefreshToken, deleteToken, getAccessToken } from '@/util/auth';
 import { useRouter } from 'next/navigation';
 
 type AppRouterInstance = ReturnType<typeof useRouter>;
