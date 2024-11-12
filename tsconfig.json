@@ -28,6 +28,6 @@
       "@style/*": ["./style/*"]
     }
   },
-  "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", ".next/types/**/*.ts", "src/component/chart/linktsx"],
+  "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", ".next/types/**/*.ts", "src/component/chart/linktsx", "src/database/mysql2.js"],
   "exclude": ["node_modules"]
 }
