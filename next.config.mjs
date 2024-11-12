@@ -15,16 +15,24 @@ const nextConfig = {
     },
     basePath: process.env.NEXT_PUBLIC_LOCAL_SERVER_PREFIX,
     async rewrites() {
-        return [
-            {
-                source: `${process.env.NEXT_PUBLIC_LOCAL_SERVER_PREFIX}/:path*`,
-                destination: `/:path*`
-            },
+        const result = [
             {
                 source: `/:path*`,
                 destination: `/login-after/:path*`
             }
         ]
+
+        if (process.env.NEXT_PUBLIC_LOCAL_SERVER_PREFIX) {
+            result = [
+                {
+                    source: `${process.env.NEXT_PUBLIC_LOCAL_SERVER_PREFIX}/:path*`,
+                    destination: `/:path*`
+                },
+                ...result
+            ]
+        }
+
+        return result;
     }
 }
 
