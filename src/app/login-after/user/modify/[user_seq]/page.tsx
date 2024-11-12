@@ -2,7 +2,7 @@
 import { changeFunction } from "@/util/function";
 import { useEffect, useState } from "react";
 import { AdminUserPatchDTO } from "../../dto";
-import { axiosErrorHandle, resetValidationError, validateAction } from "@/util/util";
+import { axiosErrorHandle, resetValidationError, validateAction } from "@/util/axiosError";
 import { useParams, useRouter, useSearchParams } from "next/navigation";
 import Link from "next/link";
 import Loading from "@/component/loading";

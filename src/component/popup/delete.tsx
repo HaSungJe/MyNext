@@ -2,7 +2,7 @@
 import { getAccessToken } from '@/util/auth';
 import { ReactElement, useState } from "react";
 import axios from 'axios';
-import { axiosErrorHandle } from '@/util/util';
+import { axiosErrorHandle } from '@/util/axiosError';
 import { axiosDelete } from '@/util/axios';
 import { useRouter } from 'next/navigation';
 

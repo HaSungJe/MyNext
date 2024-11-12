@@ -1,11 +1,5 @@
 import { NextRequest, NextResponse } from "next/server";
  
-type ResponseData = {
-    message: string
-  }
-
-
-
 export async function POST(req: NextRequest) {
 
 

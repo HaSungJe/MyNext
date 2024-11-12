@@ -5,7 +5,7 @@ import { useEffect, useState } from 'react';
 import MenuBar from '@/component/menu';
 import Loading from '@/component/loading';
 import { axiosGet } from '@/util/axios';
-import { axiosErrorHandle } from '@/util/util';
+import { axiosErrorHandle } from '@/util/axiosError';
 import '@style/globals.css';
 import Footer from "@/component/footer";
 

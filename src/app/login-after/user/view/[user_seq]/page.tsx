@@ -3,7 +3,7 @@ import { useParams, useRouter, useSearchParams } from 'next/navigation';
 import { useEffect, useState } from 'react';
 import Link from 'next/link';
 import Loading from "@/component/loading";
-import { axiosErrorHandle } from '@/util/util';
+import { axiosErrorHandle } from '@/util/axiosError';
 import { axiosGet } from '@/util/axios';
 import Image from "next/image";
 

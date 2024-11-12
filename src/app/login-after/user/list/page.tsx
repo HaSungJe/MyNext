@@ -2,7 +2,8 @@
 import React, {useEffect, useState} from 'react';
 import { useRouter, useSearchParams } from "next/navigation";
 import { List } from './component';
-import { axiosErrorHandle, createQueryString } from '@util/util';
+import { createQueryString } from '@util/util';
+import { axiosErrorHandle } from '@/util/axiosError';
 import { CountInfo, PageNation } from '@/component/pagenation';
 import { selectboxAllCheck, changeFunction } from '@util/function';
 import { DeletePopup, deleteData } from '@component/popup/delete';
