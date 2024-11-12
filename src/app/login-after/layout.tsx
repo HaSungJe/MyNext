@@ -1,13 +1,13 @@
 'use client'
 import { useRouter } from "next/navigation";
-import { Info } from '@/component/info';
+import { Info } from '@/container/info';
 import { useEffect, useState } from 'react';
-import MenuBar from '@/component/menu';
+import MenuBar from '@/container/menu';
 import Loading from '@/component/loading';
 import { axiosGet } from '@/util/axios';
 import { axiosErrorHandle } from '@/util/axiosError';
 import '@style/globals.css';
-import Footer from "@/component/footer";
+import Footer from "@/container/footer";
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
     const router = useRouter();

@@ -4,9 +4,9 @@ import { useRouter, useSearchParams } from "next/navigation";
 import { List } from './component';
 import { createQueryString } from '@util/util';
 import { axiosErrorHandle } from '@/util/axiosError';
-import { CountInfo, PageNation } from '@/component/pagenation';
+import { CountInfo, PageNation } from '@/container/pagenation';
 import { selectboxAllCheck, changeFunction } from '@util/function';
-import { DeletePopup, deleteData } from '@component/popup/delete';
+import { DeletePopup, deleteData } from '@/container/popup/delete';
 import Loading from "@/component/loading";
 import { axiosExcelDown, axiosGet } from '@/util/axios';
 
