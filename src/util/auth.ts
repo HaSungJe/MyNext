@@ -36,25 +36,19 @@ export async function checkAuth(): Promise<boolean> {
     }
 }
 
-/**
- * RefreshToken으로 AccessToken 재발급받기
- * 
- * @returns 
- */
 export async function checkRefreshToken(): Promise<boolean> {
     const refreshToken = cookies().get('refreshToken');
-
     if (refreshToken && refreshToken.value) {
-        // const response = await axios.get(`${process.env.NEXT_PUBLIC_API_URL}/api/admin/user/refresh`, {headers: {token: refreshToken?.value}});
+        return await setAccessToken(`access_${new Date().getTime()}`, null);
 
-        // if (response.data.statusCode === 200) {
+        // try {
+        //     const response = await axios.get(`${process.env.NEXT_PUBLIC_API_URL}/api/admin/user/refresh`, {headers: {token: refreshToken?.value}});
+        //     await setRefreshToken(response.data.refresh_token);
         //     return await setAccessToken(response.data.access_token, response.data.access_token_end_dt);
-        // } else {
+        // } catch (error) {
         //     deleteToken();
         //     return false;
         // }
-
-        return await setAccessToken(`access_${new Date().getTime()}`, null);
     } else {
         return false;
     }
