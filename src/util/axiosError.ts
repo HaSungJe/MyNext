@@ -40,6 +40,8 @@ export async function axiosErrorHandle(error: any, router: AppRouterInstance): P
             router.push('/')
         } else if (statusCode === 404) {
             alert('실패하였습니다.');
+        } else if (statusCode === 413) {
+            alert(error.response.data?.message);
         }
     } else {
         // alert('실패하였습니다.');
