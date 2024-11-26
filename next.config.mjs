@@ -14,7 +14,7 @@ const nextConfig = {
         ],
     },
     basePath: process.env.NEXT_PUBLIC_LOCAL_SERVER_PREFIX,
-    async rewrites() {
+    async rewrites() { // 이 기능 사용시, Linux의 Nginx에서 up stream을 사용해야한다.
         const result = [
             {
                 source: `/:path*`,
