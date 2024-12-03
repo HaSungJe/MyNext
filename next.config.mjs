@@ -2,6 +2,15 @@
 
 const nextConfig = {
     output: "standalone",
+    eslint: {
+        ignoreDuringBuilds: true,
+    },
+    webpack(config, { isServer }) {
+        if (!isServer) {
+            config.optimization.minimize = false; // CSS 최적화 비활성화
+        }
+        return config;
+    },
     reactStrictMode: true,
     images: {
         remotePatterns: [
