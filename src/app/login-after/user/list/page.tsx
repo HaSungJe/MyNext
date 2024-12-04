@@ -1,8 +1,8 @@
 'use client'
 import React, {useEffect, useState} from 'react';
-import { useRouter, useSearchParams } from "next/navigation";
+import { usePathname, useRouter, useSearchParams } from "next/navigation";
 import { List } from './component';
-import { createQueryString } from '@util/util';
+import { createQueryJSONForURL, createQueryString } from '@util/util';
 import { axiosErrorHandle } from '@/util/axiosError';
 import { CountInfo, PageNation } from '@/component/custom/pagenation';
 import { selectboxAllCheck, changeFunction } from '@util/function';
@@ -12,6 +12,7 @@ import Loading from '@/component/common/loading';
 
 export default function Page() {
     const router = useRouter();
+    const pathname = usePathname();
     const searchParams = useSearchParams();
     const [loading, setLoading] = useState(true);
     const [searching, setSearching] = useState(true);
@@ -23,6 +24,24 @@ export default function Page() {
     const [search_type, setSearchType] = useState(searchParams.get('page') || 'ALL');
     const [search_val, setSearchVal] = useState(searchParams.get('search_val') || '');
     const [sort_type, setSortType] = useState(searchParams.get('sort_type') || 'NEW');
+
+    // 검색정보 세팅 - useSearchParam 기능 사용불가능한경우 사용(next/script 기능 사용시 해당 문제 발생함)
+    useEffect(() => {
+        // if (typeof window !== 'undefined') {
+        //     const params: any = createQueryJSONForURL(pathname, window.location.href);
+        //     if (params?.page) {
+        //         setPage(params.page);
+        //     }
+
+        //     if (params?.search_type) {
+        //         setSearchType(params.search_type);
+        //     }
+
+        //     if (params?.search_val) {
+        //         setSearchVal(params.search_val);
+        //     }
+        // }
+    }, []);
 
     // 페이지 정보 변경시, 검색정보 변경
     useEffect(() => {
