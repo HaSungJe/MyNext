@@ -7,7 +7,7 @@ const nextConfig = {
     },
     webpack(config, { isServer }) {
         if (!isServer) {
-            config.optimization.minimize = false; // CSS 최적화 비활성화
+            config.optimization.minimize = false; // 외부 css 사용시의 빌드 에러 무시
         }
         return config;
     },

@@ -4,11 +4,11 @@ import { useRouter, useSearchParams } from "next/navigation";
 import { List } from './component';
 import { createQueryString } from '@util/util';
 import { axiosErrorHandle } from '@/util/axiosError';
-import { CountInfo, PageNation } from '@/container/pagenation';
+import { CountInfo, PageNation } from '@/component/custom/pagenation';
 import { selectboxAllCheck, changeFunction } from '@util/function';
-import { DeletePopup, deleteData } from '@/container/popup/delete';
-import Loading from "@/component/loading";
 import { axiosExcelDown, axiosGet } from '@/util/axios';
+import { deleteData } from '@/component/custom/popup/delete';
+import Loading from '@/component/common/loading';
 
 export default function Page() {
     const router = useRouter();
