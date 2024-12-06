@@ -83,7 +83,13 @@ export function ImageView( {path, maxHeight}: ImageViewProps ) {
 
     if (loading) {
         return (
-            <Image src={path} alt={`이미지파일_${new Date().getTime()}_${randomNumber}`} width={size['width']} height={size['height']}/>
+            <Image 
+                key={`이미지파일_div_${new Date().getTime()}_${randomNumber}`} 
+                src={path} alt={`이미지파일_${new Date().getTime()}_${randomNumber}`} 
+                width={size['width']} 
+                height={size['height']}
+                style={{width: size['width'], height: size['height']}}
+            />
         )
     } else {
         return (
