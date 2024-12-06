@@ -25,23 +25,22 @@ export default function Page() {
     const [search_val, setSearchVal] = useState(searchParams.get('search_val') || '');
     const [sort_type, setSortType] = useState(searchParams.get('sort_type') || 'NEW');
 
-    // 검색정보 세팅 - useSearchParam 기능 사용불가능한경우 사용(next/script 기능 사용시 해당 문제 발생함)
-    useEffect(() => {
-        // if (typeof window !== 'undefined') {
-        //     const params: any = createQueryJSONForURL(pathname, window.location.href);
-        //     if (params?.page) {
-        //         setPage(params.page);
-        //     }
+    // // URL 파라미터 처리
+    // const [isParam, setIsParam] = useState(false);
+    // useEffect(() => {
+    //     if (typeof window !== 'undefined') {
+    //         const params: any = createQueryJSONForURL(pathname, window.location.href);
+    //         setPage(params?.page || page);
+    //         setSearchType(params?.search_type || search_type);
+    //         setSearchVal(params?.search_val || search_val);
+    //         setIsParam(true);
+    //     }
+    // }, [pathname]);
 
-        //     if (params?.search_type) {
-        //         setSearchType(params.search_type);
-        //     }
-
-        //     if (params?.search_val) {
-        //         setSearchVal(params.search_val);
-        //     }
-        // }
-    }, []);
+    // // URL 파라미터 존재시, 적용된 검색정보로 검색
+    // useEffect(() => {
+    //     setQueryStr(createQueryString({page, search_type, search_val }));
+    // }, [isParam]);
 
     // 페이지 정보 변경시, 검색정보 변경
     useEffect(() => {

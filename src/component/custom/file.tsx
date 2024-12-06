@@ -46,6 +46,7 @@ export function ImageFile({id, classStr}: FileProps ) {
 
 // 이미지 보기
 export function ImageView( {path, maxHeight}: ImageViewProps ) {
+    const [loading, setLoading] = useState(false);
     const randomNumber = Math.random() * 100;
     const [size, setSize] = useState({ width: 0, height: 0 });
     const imgRef = useRef<HTMLImageElement>(null);
@@ -54,11 +55,13 @@ export function ImageView( {path, maxHeight}: ImageViewProps ) {
         const img = imgRef.current;
         const handleLoad = () => {
             if (img) {
-                if (img.naturalHeight > maxHeight) {
+                if (maxHeight && img.naturalHeight > maxHeight) {
                     const ratio = maxHeight / img.naturalHeight;
                     setSize({ width: img.naturalWidth * ratio, height: img.naturalHeight * ratio });
+                    setLoading(true);
                 } else {
                     setSize({ width: img.naturalWidth, height: img.naturalHeight });
+                    setLoading(true);
                 }
             }
         }
@@ -77,20 +80,27 @@ export function ImageView( {path, maxHeight}: ImageViewProps ) {
         };
     }, [path]);
 
-    return (
-        <div key={`이미지파일_div_${new Date().getTime()}_${randomNumber}`} style={{width: size['width'], height: size['height']}}>
-            <Image
-                priority
-                alt={`이미지파일_${new Date().getTime()}_${randomNumber}`}
-                ref={imgRef}
-                src={path}
-                width={0} // 원본 너비 설정
-                height={0} // 원본 높이 설정
-                sizes="100vw"
-                style={{width: size['width'], height: size['height'] }}
-            />
-        </div>
-    );
+
+    if (loading) {
+        return (
+            <Image src={path} alt={`이미지파일_${new Date().getTime()}_${randomNumber}`} width={size['width']} height={size['height']}/>
+        )
+    } else {
+        return (
+            <div key={`이미지파일_div_${new Date().getTime()}_${randomNumber}`} style={{width: size['width'], height: size['height']}}>
+                <Image
+                    priority
+                    alt={`이미지파일_${new Date().getTime()}_${randomNumber}`}
+                    ref={imgRef}
+                    src={path}
+                    width={0} // 원본 너비 설정
+                    height={0} // 원본 높이 설정
+                    sizes="100vw"
+                    style={{width: size['width'], height: size['height'] }}
+                />
+            </div>
+        );
+    }
 }
 
 // 이미지 보기 (여러개)
