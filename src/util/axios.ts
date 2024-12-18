@@ -2,6 +2,7 @@
 import axios from 'axios';
 import { checkRefreshToken, deleteToken, getAccessToken } from '@/util/auth';
 import { useRouter } from 'next/navigation';
+import { axiosErrorHandle } from './axiosError';
 
 type AppRouterInstance = ReturnType<typeof useRouter>;
 
@@ -29,16 +30,14 @@ export async function axiosExcelDown(router: AppRouterInstance, fileName: string
         if (error.response.data.statusCode === 401) {
             if (reload) {
                 await deleteToken();
-                alert(error.response.data?.message);
-                router.push('/');
+                await axiosErrorHandle(error, router);
             } else {
                 const refresh = await checkRefreshToken();
                 if (refresh) {
                     axiosGet(router, url, true);
                 } else {
                     await deleteToken();
-                    alert(error.response.data?.message);
-                    router.push('/');
+                    await axiosErrorHandle(error, router);
                 }
             }
         } else {
@@ -62,16 +61,14 @@ export async function axiosGet(router: AppRouterInstance, url: string, reload: b
         if (error.response.data.statusCode === 401) {
             if (reload) {
                 await deleteToken();
-                alert(error.response.data?.message);
-                router.push('/');
+                await axiosErrorHandle(error, router);
             } else {
                 const refresh = await checkRefreshToken();
                 if (refresh) {
                     axiosGet(router, url, true);
                 } else {
                     await deleteToken();
-                    alert(error.response.data?.message);
-                    router.push('/');
+                    await axiosErrorHandle(error, router);
                 }
             }
         } else {
@@ -97,16 +94,14 @@ export async function axiosPost(router: AppRouterInstance, url: string, body: an
         if (error.response.data.statusCode === 401) {
             if (reload) {
                 await deleteToken();
-                alert(error.response.data?.message);
-                router.push('/');
+                await axiosErrorHandle(error, router);
             } else {
                 const refresh = await checkRefreshToken();
                 if (refresh) {
                     axiosPost(router, url, body, true);
                 } else {
                     await deleteToken();
-                    alert(error.response.data?.message);
-                    router.push('/');
+                    await axiosErrorHandle(error, router);
                 }
             }
         } else {
@@ -132,16 +127,14 @@ export async function axiosPut(router: AppRouterInstance, url: string, body: any
         if (error.response.data.statusCode === 401) {
             if (reload) {
                 await deleteToken();
-                alert(error.response.data?.message);
-                router.push('/');
+                await axiosErrorHandle(error, router);
             } else {
                 const refresh = await checkRefreshToken();
                 if (refresh) {
                     axiosPut(router, url, body, true);
                 } else {
                     await deleteToken();
-                    alert(error.response.data?.message);
-                    router.push('/');
+                    await axiosErrorHandle(error, router);
                 }
             }
         } else {
@@ -167,16 +160,14 @@ export async function axiosPatch(router: AppRouterInstance, url: string, body: a
         if (error.response.data.statusCode === 401) {
             if (reload) {
                 await deleteToken();
-                alert(error.response.data?.message);
-                router.push('/');
+                await axiosErrorHandle(error, router);
             } else {
                 const refresh = await checkRefreshToken();
                 if (refresh) {
                     axiosPatch(router, url, body, true);
                 } else {
                     await deleteToken();
-                    alert(error.response.data?.message);
-                    router.push('/');
+                    await axiosErrorHandle(error, router);
                 }
             }
         } else {
@@ -205,16 +196,14 @@ export async function axiosDelete(router: AppRouterInstance, url: string, body: 
         if (error.response.data.statusCode === 401) {
             if (reload) {
                 await deleteToken();
-                alert(error.response.data?.message);
-                router.push('/');
+                await axiosErrorHandle(error, router);
             } else {
                 const refresh = await checkRefreshToken();
                 if (refresh) {
                     axiosDelete(router, url, body, true);
                 } else {
                     await deleteToken();
-                    alert(error.response.data?.message);
-                    router.push('/');
+                    await axiosErrorHandle(error, router);
                 }
             }
         } else {
