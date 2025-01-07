@@ -1,6 +1,6 @@
 "use server";
 import { cookies } from "next/headers";
-import axios from 'axios';
+import * as jwt from 'jsonwebtoken';
 
 /**
  * AccessToken 얻기
@@ -110,6 +110,66 @@ export async function deleteToken(): Promise<boolean> {
     try {
         cookies().delete('accessToken');
         cookies().delete('refreshToken');
+        return true;
+    } catch (error) {
+        return false;
+    }
+}
+
+/**
+ * 소셜 로그인 정보 저장
+ * 
+ * @param value 
+ * @returns 
+ */
+export async function setSNSAccessToken(data: object): Promise<boolean> {
+    try {
+        const setTime = new Date().getTime() + (60 * 60 * 1000); // 1시간 유지
+        const token = jwt.sign(data, process.env.JWT_CODE, {expiresIn: `1d`})
+        cookies().set('sns', token, {
+            path: "/",
+            httpOnly: true,
+            sameSite: "strict",
+            secure: process.env.NODE_ENV === 'development' ? false : true, 
+            expires: setTime
+        })
+    
+        return true;
+    } catch (error) {
+        return false;
+    }
+}
+
+/**
+ * 소셜 로그인 정보 얻기
+ * 
+ * @returns 
+ */
+export async function getSNSAccessToken(): Promise<any> {
+    const data = cookies().get('sns');
+    if (data) {
+        return jwt.verify(data.value, process.env.JWT_CODE);
+    } else {
+        return null;
+    }
+}
+
+/**
+ * 소셜 로그인 정보 삭제
+ * 
+ * @returns 
+ */
+export async function deleteSNSAccessToken(): Promise<boolean> {
+    try {
+        const list = cookies().getAll();
+        for (let i=0; i<list.length; i++) {
+            const data = list[i];
+            if (data.name.indexOf('next-auth') !== -1) {
+                cookies().delete(data.name);
+            }
+        }
+
+        cookies().delete('sns');
         return true;
     } catch (error) {
         return false;
