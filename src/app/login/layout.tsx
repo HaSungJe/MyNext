@@ -1,9 +1,9 @@
 'use client';
 import { checkAuth } from '@/util/auth';
-import Loading from '@/component/loading';
 import { useRouter } from 'next/navigation';
 import { useEffect, useState } from 'react';
 import '@style/globals.css';
+import Loading from '@/component/common/loading';
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
     const router = useRouter();
