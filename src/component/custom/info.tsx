@@ -21,7 +21,7 @@ export function Info( {info}: InfoProps ) {
     const logout = async () => {
         const result = await deleteToken();
         if (result) {
-            router.push('/login')
+            router.push('/user/sign-in')
         }
     }
 

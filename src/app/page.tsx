@@ -12,7 +12,7 @@ export default function MainPage() {
             if (auth) {
                 router.push('/dashboard');
             } else {
-                router.push('/login');
+                router.push('/user/sign-in');
             }
         }
 
