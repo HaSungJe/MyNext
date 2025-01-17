@@ -65,15 +65,17 @@ export function resetValidationError(): void {
  * @param dto 
  */
 export async function validateAction(dto: any): Promise<boolean> {
+    resetValidationError();
+
     try {
         await validateOrReject(dto);
         return true;
     } catch (err: any) {
         const errors = [];
+
         for (let i=0; i<err.length; i++) {
             const error = err[i];
             const key = (Object.keys(err[i]['constraints']))[0];
-        
             if (key === 'isBoolean') {
                 if (error['contexts']) {
                     errors.push({
@@ -97,13 +99,18 @@ export async function validateAction(dto: any): Promise<boolean> {
                 });
             }
         }
-    
+
+        let span_alert_count = 0;
         for (let i=0; i<errors.length; i++) {
             const doc: any = document.querySelector(`span[data-type=alert_span][data-val=${errors[i].property}]`);
             if (doc) {
                 doc.innerText = errors[i].message;
-                doc.className = className;
+                span_alert_count++;
             }
+        }
+
+        if (errors && errors.length > 0 && span_alert_count === 0) {
+            alert(errors[0].message);
         }
 
         return false;
