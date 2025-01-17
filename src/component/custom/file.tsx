@@ -11,7 +11,7 @@ type FileProps = {
 
 type ImageViewProps = {
     path: string;
-    maxHeight: number;
+    maxHeight?: number;
 }
 
 type ImageViewMultiProps = {
@@ -21,7 +21,7 @@ type ImageViewMultiProps = {
 
 type FilesViewProps = {
     files: Array<any>;
-    deleteFunction: Function;
+    deleteFunction?: Function;
 }
 
 type FileUploadMultiProps = {
@@ -173,6 +173,7 @@ export function ImageFileAndView({id, classStr, path, maxHeight}: FileProps ) {
  * @returns 
  */
 export function FilesView( {files, deleteFunction}: FilesViewProps) {
+    files = files && files.length ? files.filter(e => 'N' !== e['use_yn']) : [];
     async function deleteFile(key: string | number) {
         const check = confirm('삭제하시겠습니까?');
         if (check) {
@@ -180,7 +181,7 @@ export function FilesView( {files, deleteFunction}: FilesViewProps) {
         }
     }
 
-    if (files.length > 0) {
+    if (files && files.length > 0) {
         return (
             <div className="view_file">
                 <ul>
@@ -193,7 +194,12 @@ export function FilesView( {files, deleteFunction}: FilesViewProps) {
                                         <span className="t_blue">({file.file_size})</span>
                                         <i className="xi-download"><span className="blind">다운로드</span></i>
                                     </a>
-                                    <button type="button" className="add-delete" onClick={() => deleteFile(files[0]['file_uuid'])}></button>
+                                    {
+                                        deleteFunction ? 
+                                        <button type="button" className="add-delete" onClick={() => deleteFile(files[0]['file_uuid'])}></button>
+                                        :
+                                        ''
+                                    }
                                 </li>
                             )
                         })
@@ -231,35 +237,33 @@ export function FileUploadMulti( {startCount, maxCount, classStr}: FileUploadMul
     // 파일 등록칸 삭제
     function deleteFile() {
         if (files.length > 1) {
-            const tmp_files = [];
-            for (let i=0; i<files.length-1; i++) {
-                tmp_files.push(null);
-            }
-    
-            setFiles(tmp_files);
+            setFiles(files.slice(0, -1));
         }
     }
 
     useEffect(() => {
-        const tmp_files = [];
-        for (let i=0; i<startCount; i++) {
-            tmp_files.push(null);
-        }
-
-        setFiles(tmp_files);
-    }, []);
+        const initialFiles = Array(startCount).fill(null);
+        setFiles(initialFiles);
+    }, [startCount]);
 
     return (
         <>
-            <button type="button" className="n-btn btn-blue" onClick={addFile}>파일추가</button>
-            <button type="button" className="n-btn btn-red" onClick={deleteFile}>삭제</button>
-            {
-                files.map((file, index) => {
-                    return (
-                        <input type="file" className={classStr} key={`file_multi_upload_${index}`}/>
-                    )
-                })
-            }
+            <button type="button" className="btn-plus" onClick={addFile}>+</button>
+            <button type="button" className="btn-minus" onClick={deleteFile}>-</button>
+            <ul>
+                {
+                    files.map((file, index) => {
+                        return (
+                            <li style={{paddingTop: '5px', paddingBottom: '5px'}} key={`file_upload_${index}`}>
+                                <input 
+                                    type="file" 
+                                    className={classStr} 
+                                />
+                            </li>
+                        )
+                    })
+                }
+            </ul>
         </>
     )
 }
