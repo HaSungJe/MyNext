@@ -152,7 +152,7 @@ export async function validateAction(dto: any): Promise<boolean> {
  * @param {*} v 
  */
 export function addZero(v: any): string {
-    if (v) {
+    if (v || v === 0) {
         if (parseInt(v) < 10) {
             v = "0" + v;
         } else {
