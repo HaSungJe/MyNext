@@ -16,5 +16,7 @@ export function selectboxAllCheck(event: any) {
 
 // 입력칸 정보 변경
 export function changeFunction(event: any, func: Function) {
-    func(event.target.value);
+    if (func) {
+        func(event.target.value);
+    }
 }
