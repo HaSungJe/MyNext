@@ -1,5 +1,5 @@
 'use client';
-import { deleteToken } from '@/util/auth';
+import { deleteToken } from '@/util/cookie';
 import { useRouter } from "next/navigation";
 import Image from 'next/image';
 import Link from 'next/link';

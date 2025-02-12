@@ -1,6 +1,6 @@
 'use client'
 import { useEffect, useState } from "react";
-import { setRefreshToken, setAccessToken } from '@/util/auth';
+import { setRefreshToken, setAccessToken } from '@/util/cookie';
 import { useRouter } from "next/navigation";
 import { changeFunction } from "@/util/function";
 import { axiosPost } from "@/util/axios";

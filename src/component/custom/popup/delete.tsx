@@ -1,5 +1,5 @@
 'use client';
-import { getAccessToken } from '@/util/auth';
+import { getAccessToken } from '@/util/cookie';
 import { ReactElement, useState } from "react";
 import axios from 'axios';
 import { axiosErrorHandle } from '@/util/axiosError';

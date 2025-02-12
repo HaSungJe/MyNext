@@ -1,5 +1,5 @@
 'use server';
-import { setSNSAccessToken } from "@/util/auth";
+import { setSNSAccessToken } from "@/util/cookie";
 import NaverProvider from "next-auth/providers/naver";
 import KakaoProvider from "next-auth/providers/kakao";
 import NextAuth from "next-auth";

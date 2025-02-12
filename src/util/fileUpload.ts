@@ -1,6 +1,6 @@
 'use client';
 import axios from "axios";
-import { getAccessToken } from '@/util/auth';
+import { getAccessToken } from '@/util/cookie';
 
 /**
  * 파일 업로드

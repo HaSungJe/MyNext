@@ -2,7 +2,7 @@
 import { useEffect } from 'react';
 import Loading from '@/component/common/loading';
 import { useRouter } from 'next/navigation';
-import { deleteSNSAccessToken, getSNSAccessToken, setAccessToken, setRefreshToken } from '@util/auth';
+import { deleteSNSAccessToken, getSNSAccessToken, setAccessToken, setRefreshToken } from '@/util/cookie';
 import { axiosErrorHandle } from '@/util/util';
 import { SignInDTO, SignUpDTO } from '../dto';
 import { axiosPost, axiosPut } from '@/util/axios';

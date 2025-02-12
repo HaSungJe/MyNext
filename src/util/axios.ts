@@ -1,76 +1,25 @@
 'use client';
-import axios from 'axios';
-import { checkRefreshToken, deleteToken, getAccessToken } from '@/util/auth';
+import { deleteToken, getAccessToken } from '@/util/cookie';
 import { useRouter } from 'next/navigation';
-import { axiosErrorHandle } from './axiosError';
+import axios from 'axios';
+import { axiosErrorHandle } from './util';
 
 type AppRouterInstance = ReturnType<typeof useRouter>;
-
-/**
- * 엑셀 다운로드
- * 
- * @param router 
- * @param fileName 
- * @param url 
- * @param reload 
- */
-export async function axiosExcelDown(router: AppRouterInstance, fileName: string, url: string, reload: boolean = false) {
-    try {
-        const accessToken = await getAccessToken();
-        const response = await axios.get(url, {responseType: 'blob', headers: {token: accessToken}});
-        const downloadUrl = window.URL.createObjectURL(new Blob([response.data]));
-        const link = document.createElement('a');
-        link.href = downloadUrl;
-        link.setAttribute('download', `${fileName}.xlsx`);
-        link.style.cssText = "display:none";
-        link.click();
-        link.remove();
-    } catch (error: any) {
-        console.log(error)
-        if (error.response.data.statusCode === 401) {
-            if (reload) {
-                await deleteToken();
-                await axiosErrorHandle(error, router);
-            } else {
-                const refresh = await checkRefreshToken();
-                if (refresh) {
-                    axiosGet(router, url, true);
-                } else {
-                    await deleteToken();
-                    await axiosErrorHandle(error, router);
-                }
-            }
-        } else {
-            throw error;
-        }
-    }
-}
 
 /**
  * Get
  * 
  * @param router
  * @param url 
- * @param reload
  */
-export async function axiosGet(router: AppRouterInstance, url: string, reload: boolean = false) {
+export async function axiosGet(router: AppRouterInstance, url: string) {
     try {
         const accessToken = await getAccessToken();
-        return await axios.get(url, {headers: {token: accessToken}});
+        return await axios.get(url, {headers: {accessToken: accessToken}});
     } catch (error: any) {
         if (error.response.data.statusCode === 401) {
-            if (reload) {
-                await deleteToken();
-                await axiosErrorHandle(error, router);
-            } else {
-                const refresh = await checkRefreshToken();
-                if (refresh) {
-                    axiosGet(router, url, true);
-                } else {
-                    await deleteToken();
-                    await axiosErrorHandle(error, router);
-                }
-            }
+            await deleteToken();
+            await axiosErrorHandle(error, router);
         } else {
             throw error;
         }
@@ -83,27 +32,16 @@ export async function axiosGet(router: AppRouterInstance, url: string, reload: b
  * @param router
  * @param url 
  * @param body 
- * @param reload
  * @returns 
  */
-export async function axiosPost(router: AppRouterInstance, url: string, body: any, reload: boolean = false) {
+export async function axiosPost(router: AppRouterInstance, url: string, body: any) {
     try {
         const accessToken = await getAccessToken();
-        return await axios.post(url, body, {headers: {token: accessToken}});
+        return await axios.post(url, body, {headers: {accessToken: accessToken}});
     } catch (error: any) {
         if (error.response.data.statusCode === 401) {
-            if (reload) {
-                await deleteToken();
-                await axiosErrorHandle(error, router);
-            } else {
-                const refresh = await checkRefreshToken();
-                if (refresh) {
-                    axiosPost(router, url, body, true);
-                } else {
-                    await deleteToken();
-                    await axiosErrorHandle(error, router);
-                }
-            }
+            await deleteToken();
+            await axiosErrorHandle(error, router);
         } else {
             throw error;
         }
@@ -116,27 +54,16 @@ export async function axiosPost(router: AppRouterInstance, url: string, body: an
  * @param router
  * @param url 
  * @param body 
- * @param reload 
  * @returns 
  */
-export async function axiosPut(router: AppRouterInstance, url: string, body: any, reload: boolean = false) {
+export async function axiosPut(router: AppRouterInstance, url: string, body: any) {
     try {
         const accessToken = await getAccessToken();
-        return await axios.put(url, body, {headers: {token: accessToken}});
+        return await axios.put(url, body, {headers: {accessToken: accessToken}});
     } catch (error: any) {
         if (error.response.data.statusCode === 401) {
-            if (reload) {
-                await deleteToken();
-                await axiosErrorHandle(error, router);
-            } else {
-                const refresh = await checkRefreshToken();
-                if (refresh) {
-                    axiosPut(router, url, body, true);
-                } else {
-                    await deleteToken();
-                    await axiosErrorHandle(error, router);
-                }
-            }
+            await deleteToken();
+            await axiosErrorHandle(error, router);
         } else {
             throw error;
         }
@@ -152,24 +79,14 @@ export async function axiosPut(router: AppRouterInstance, url: string, body: any
  * @param reload 
  * @returns 
  */
-export async function axiosPatch(router: AppRouterInstance, url: string, body: any, reload: boolean = false) {
+export async function axiosPatch(router: AppRouterInstance, url: string, body: any) {
     try {
         const accessToken = await getAccessToken();
-        return await axios.patch(url, body, {headers: {token: accessToken}});
+        return await axios.patch(url, body, {headers: {accessToken: accessToken}});
     } catch (error: any) {
         if (error.response.data.statusCode === 401) {
-            if (reload) {
-                await deleteToken();
-                await axiosErrorHandle(error, router);
-            } else {
-                const refresh = await checkRefreshToken();
-                if (refresh) {
-                    axiosPatch(router, url, body, true);
-                } else {
-                    await deleteToken();
-                    await axiosErrorHandle(error, router);
-                }
-            }
+            await deleteToken();
+            await axiosErrorHandle(error, router);
         } else {
             throw error;
         }
@@ -182,30 +99,19 @@ export async function axiosPatch(router: AppRouterInstance, url: string, body: a
  * @param router
  * @param url 
  * @param body 
- * @param reload 
  */
-export async function axiosDelete(router: AppRouterInstance, url: string, body: any, reload: boolean = false) {
+export async function axiosDelete(router: AppRouterInstance, url: string, body: any) {
     try {
         const accessToken = await getAccessToken();
         if (body && body !== null) {
-            await axios.delete(url, { data: body, headers: {token: accessToken}});
+            await axios.delete(url, { data: body, headers: {accessToken: accessToken}});
         } else {
             await axios.delete(url, { headers: {token: accessToken}});
         }
     } catch (error: any) {
         if (error.response.data.statusCode === 401) {
-            if (reload) {
-                await deleteToken();
-                await axiosErrorHandle(error, router);
-            } else {
-                const refresh = await checkRefreshToken();
-                if (refresh) {
-                    axiosDelete(router, url, body, true);
-                } else {
-                    await deleteToken();
-                    await axiosErrorHandle(error, router);
-                }
-            }
+            await deleteToken();
+            await axiosErrorHandle(error, router);
         } else {
             throw error;
         }

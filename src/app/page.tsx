@@ -1,6 +1,6 @@
 'use client';
 import { useRouter } from "next/navigation";
-import { checkAuth } from '@/util/auth';
+import { checkAuth } from '@/util/cookie';
 import { useEffect } from "react";
 
 export default function MainPage() {
