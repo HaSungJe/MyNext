@@ -1,35 +1,45 @@
 'use server';
 import { cookies } from "next/headers";
+import * as jwt from 'jsonwebtoken';
 
 const headers = {
-    'Content-Type': 'application/json'
+    'content-type': 'application/json'
 }
 
-// refreshToken 얻기
+// 소셜 로그인정보 쿠키 얻기
 export async function GET() {
-    const data = cookies().get('refreshToken');
+    const data = cookies().get('sns');
 
-    if (data) {
-        return new Response(data.value, { status: 200, headers });
-    } else {
-        return new Response(null, { status: 400, headers });
+    try {
+        if (data) {
+            const data = cookies().get('sns');
+            const result = jwt.verify(data.value, process.env.NEXT_PUBLIC_JWT_CODE);
+
+            return new Response(JSON.stringify({ success: true, data: result }), { headers });
+        } else {
+            return new Response(JSON.stringify({ success: false }), { headers });
+        }
+    } catch (error) {
+        return new Response(JSON.stringify({ success: false }), { headers });
     }
 }
 
-// refreshToken 생성
-export async function POST(request: Request) {
-    const { data } = await request.json();
-
+// 소셜 로그인정보 쿠키 삭제
+export async function DELETE() {
     try {
-        cookies().set('refreshToken', data, {
-            path: "/",
-            httpOnly: true,
-            sameSite: "strict",
-            secure: process.env.NODE_ENV === 'development' ? false : true, 
-        });
-    
-        return new Response(null, { status: 200, headers });
+        // 소셜 로그인정보 쿠키 삭제
+        cookies().delete('sns');
+
+        // next-auth 쿠키 삭제
+        const cookieList = cookies().getAll();
+        for (let i=0; i<cookieList.length; i++) {
+            if (cookieList[i].name.indexOf('next-auth') !== -1) {
+                cookies().delete(cookieList[i].name);
+            }
+        }
+
+        return new Response(JSON.stringify({ success: true }), { headers });
     } catch (error) {
-        return new Response(null, { status: 400, headers });
+        return new Response(JSON.stringify({ success: false }), { headers });
     }
 }

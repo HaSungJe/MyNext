@@ -9,7 +9,11 @@ import axios from 'axios';
 export async function getSNSAccessToken(): Promise<any> {
     try {
         const response = await axios.get(`${process.env.NEXT_PUBLIC_SERVER_URL}/api/cookie/sns`);
-        return response.data;
+        if (response.data.success) {
+            return response.data.data;
+        } else {
+            return null;
+        }
     } catch (error) {
         return null;
     }
@@ -22,8 +26,12 @@ export async function getSNSAccessToken(): Promise<any> {
  */
 export async function deleteSNSAccessToken(): Promise<boolean> {
     try {
-        await axios.delete(`${process.env.NEXT_PUBLIC_SERVER_URL}/api/cookie/sns`);
-        return true;
+        const response = await axios.delete(`${process.env.NEXT_PUBLIC_SERVER_URL}/api/cookie/sns`);
+        if (response.data.success) {
+            return true;
+        } else {
+            return false;
+        }
     } catch (error) {
         return false;
     }
@@ -36,10 +44,13 @@ export async function deleteSNSAccessToken(): Promise<boolean> {
  */
 export async function getAccessToken(): Promise<string | null> {
     try {
-        // AccessToken 존재시
         const response = await axios.get(`${process.env.NEXT_PUBLIC_SERVER_URL}/api/cookie/access`);
-        return response.data;
-    } catch (error) {        
+        if (response.data.success) {
+            return response.data.data;
+        } else {
+            return null;
+        }
+    } catch (error) {
         return null;
     }
 }
@@ -51,10 +62,13 @@ export async function getAccessToken(): Promise<string | null> {
  */
 export async function getAccessTokenData(): Promise<any> {
     try {
-        // AccessToken 존재시
         const response = await axios.get(`${process.env.NEXT_PUBLIC_SERVER_URL}/api/cookie/access?option=1`);
-        return response.data;
-    } catch (error) {        
+        if (response.data.success) {
+            return response.data.data;
+        } else {
+            return null;
+        }
+    } catch (error) {
         return null;
     }
 }
@@ -64,11 +78,15 @@ export async function getAccessTokenData(): Promise<any> {
  * 
  * @returns 
  */
-export async function checkAuth(): Promise<boolean> {    
+export async function checkAuth(): Promise<boolean> {
     try {
-        await axios.get(`${process.env.NEXT_PUBLIC_SERVER_URL}/api/cookie/access?option=1`);
-        return true;
-    } catch (error) {        
+        const response = await axios.get(`${process.env.NEXT_PUBLIC_SERVER_URL}/api/cookie/access`);
+        if (response.data.success) {
+            return true;
+        } else {
+            return false;
+        }
+    } catch (error: any) {
         return false;
     }
 }
@@ -81,8 +99,12 @@ export async function checkAuth(): Promise<boolean> {
  */
 export async function setRefreshToken(refreshToken: string): Promise<boolean> {
     try {
-        await axios.post(`${process.env.NEXT_PUBLIC_SERVER_URL}/api/cookie/refresh`, {data: refreshToken});
-        return true;
+        const response = await axios.post(`${process.env.NEXT_PUBLIC_SERVER_URL}/api/cookie/refresh`, {data: refreshToken});
+        if (response.data.success) {
+            return true;
+        } else {
+            return false;
+        }
     } catch (error) {
         return false;
     }
@@ -97,8 +119,12 @@ export async function setRefreshToken(refreshToken: string): Promise<boolean> {
  */
 export async function setAccessToken(accessToken: string, setTime: string): Promise<boolean> {
     try {
-        await axios.post(`${process.env.NEXT_PUBLIC_SERVER_URL}/api/cookie/access`, {setTime, data: accessToken});
-        return true;
+        const response = await axios.post(`${process.env.NEXT_PUBLIC_SERVER_URL}/api/cookie/access`, {setTime, data: accessToken});
+        if (response.data.success) {
+            return true;
+        } else {
+            return false;
+        }
     } catch (error) {
         return false;
     }
@@ -111,8 +137,12 @@ export async function setAccessToken(accessToken: string, setTime: string): Prom
  */
 export async function deleteToken(): Promise<boolean> {
     try {
-        await axios.post(`${process.env.NEXT_PUBLIC_SERVER_URL}/api/cookie/logout`, {});
-        return true
+        const response = await axios.post(`${process.env.NEXT_PUBLIC_SERVER_URL}/api/cookie/logout`, {});
+        if (response.data.success) {
+            return true;
+        } else {
+            return false;
+        }
     } catch (error) {
         return false;
     }

@@ -16,9 +16,9 @@ export async function GET(request: Request) {
     if (accessToken) {
         if (option) {
             const result = jwt.verify(accessToken.value, process.env.NEXT_PUBLIC_JWT_CODE);
-            return new Response(JSON.stringify(result), { status: 200, headers });
+            return new Response(JSON.stringify({ success: true, data: result }), { headers });
         } else {
-            return new Response(accessToken.value, { status: 200, headers });
+            return new Response(JSON.stringify({ success: true, data: accessToken.value }), { headers });
         }
     } else {
         // AccessToken이 존재하지 않는경우, Refresh
@@ -47,17 +47,17 @@ export async function GET(request: Request) {
 
                 if (option) {
                     const result = jwt.verify(response.data.access_token, process.env.NEXT_PUBLIC_JWT_CODE);
-                    return new Response(JSON.stringify(result), { status: 200, headers });
+                    return new Response(JSON.stringify({ success: true, data: result }), { headers });
                 } else {
-                    return new Response(response.data.access_token, { status: 200, headers });
+                    return new Response(JSON.stringify({ success: true, data: response.data.access_token }), { headers });
                 }
             } catch (error) {
                 cookies().delete('accessToken');
                 cookies().delete('refreshToken');
-                return new Response(null, { status: 400,headers });
+                return new Response(JSON.stringify({ success: false }), { headers });
             }
         } else { // RefreshToken 미존재시, 로그인 정보 없음.
-            return new Response(null, { status: 400, headers });
+            return new Response(JSON.stringify({ success: false }), { headers });
         }
     }
 }
@@ -77,8 +77,8 @@ export async function POST(request: Request) {
             expires: endTime
         });
     
-        return new Response(null, { status: 200, headers });
+        return new Response(JSON.stringify({ success: true }), { headers });
     } catch (error) {
-        return new Response(null, { status: 400, headers });
+        return new Response(JSON.stringify({ success: false }), { headers });
     }
 }
