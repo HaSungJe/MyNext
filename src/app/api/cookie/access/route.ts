@@ -18,7 +18,7 @@ export async function GET(request: Request) {
             const result = jwt.verify(accessToken.value, process.env.NEXT_PUBLIC_JWT_CODE);
             return new Response(JSON.stringify(result), { status: 200, headers });
         } else {
-            return new Response(accessToken.value, { status: 400, headers });
+            return new Response(accessToken.value, { status: 200, headers });
         }
     } else {
         // AccessToken이 존재하지 않는경우, Refresh
@@ -49,7 +49,7 @@ export async function GET(request: Request) {
                     const result = jwt.verify(response.data.access_token, process.env.NEXT_PUBLIC_JWT_CODE);
                     return new Response(JSON.stringify(result), { status: 200, headers });
                 } else {
-                    return new Response(response.data.access_token, { status: 400, headers });
+                    return new Response(response.data.access_token, { status: 200, headers });
                 }
             } catch (error) {
                 cookies().delete('accessToken');
